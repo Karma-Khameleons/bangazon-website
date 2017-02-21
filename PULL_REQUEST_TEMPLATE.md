@@ -3,7 +3,7 @@ Add description about what this pull request covers.
 
 
 ##Number of Fixes
-Type of number of fixes included in this PR.
+List of fixes included in this PR.
 
 
 ##Related Ticket(s)

@@ -23,4 +23,6 @@ class Product(models.Model):
 
 	class Meta:
 		verbose_name_plural = 'Products'
-		fields = ('name', 'price', 'description', 'seller')
+	
+	def __str__(self):
+		return '{} {} {}'.format(self.name, self.price, self.description)

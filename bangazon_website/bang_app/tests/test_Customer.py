@@ -1,9 +1,11 @@
 from django.test import TestCase
+from django.contrib.auth.models import User
+
 
 import sys 
 sys.path.append('../') 
 
-from bang_app.models.Customer import Customer
+from bang_app.models.customer import Customer
 import datetime
 
 
@@ -28,20 +30,25 @@ class TestCustomer(TestCase):
 
 	@classmethod
 	def setUpClass(self):
+		
+		self.user = User(
+			first_name = "Suzy",
+			last_name = "Bishop",
+			email = "s@s.com"
+			)
+
+
 		self.suzy = Customer(
-			first_name = "Suzy", 
-			last_name="Bishop", 
-			email = "s@s.com",
+			user = self.user,
 			city = "New Penzance" ,
 			state = "Rhode Island" ,
-			postalZip = "52801",
-			address = "300 Summer's End", 
-			creation_date = datetime.datetime.now()
+			zip_code = "52801",
+			street_address = "300 Summer's End" 
 			)
 	
 	def test_customer_has_properties(self):
-		self.assertTrue("Suzy", self.suzy.User.get_first_name())
-		self.assertTrue("Bishop", self.suzy.User.get_last_name())
+		self.assertTrue("Suzy", self.suzy.user.get_first_name())
+		self.assertTrue("Bishop", self.suzy.user.get_last_name())
 		self.assertTrue("300 Summer's End", self.suzy.get_address())
 		self.assertTrue("New Penzance", self.suzy.get_city())
 		self.assertTrue("Rhode Island", self.suzy.get_state())

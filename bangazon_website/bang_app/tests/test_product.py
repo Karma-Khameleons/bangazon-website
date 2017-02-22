@@ -13,7 +13,7 @@ class TestProduct(TestCase):
 			def test_product_can_be_created(self):
 			def test_customer_can_create_product(self):
 			def test_product_has_type(self):
-				
+
 		Author:
 			@rtwhitfield84
 	'''
@@ -27,6 +27,7 @@ class TestProduct(TestCase):
 		self.customer = Customer()
 		self.ball = Product.objects.create("ball", "1.99", "3", 1, 1)
 		self.customer.create_product(self.ball)
+		self.assertIsInstance(self.ball)
 
 	def test_product_has_type(self):
 		self.ball = Product.objects.create("ball", "1.99", "3", 1, 1)

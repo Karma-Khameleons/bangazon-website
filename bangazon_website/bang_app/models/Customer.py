@@ -12,7 +12,7 @@ class Customer():
 	"""
 	Purpose: Create a Customer
 	Author: Abby
-	Methods:
+	Methods: str
 		
 	"""
 		user = models.OneToOneField(User, on_delete=models.CASCADE) 

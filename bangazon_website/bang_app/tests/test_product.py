@@ -7,5 +7,5 @@ class TestProduct(TestCase):
 
 	
 	def test_product_can_be_created(self):
-		self.ball = Product.objects.create("ball", "1.99", "3", "sporting goods", 1)
+		self.ball = Product.objects.create("ball", "1.99", "3", 1, 1)
 		self.assertIsInstance(self.ball, Product)

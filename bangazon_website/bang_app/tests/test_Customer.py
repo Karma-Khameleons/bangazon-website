@@ -1,7 +1,7 @@
 from django.test import TestCase
+
 import sys 
 sys.path.append('../') 
-
 
 from bang_app.models.Customer import Customer
 import datetime
@@ -36,7 +36,7 @@ class TestCustomer(TestCase):
 			state = "Rhode Island" ,
 			postalZip = "52801",
 			address = "300 Summer's End", 
-			creation_date = datetime.now()
+			creation_date = datetime.datetime.now()
 			)
 	
 	def test_customer_has_properties(self):

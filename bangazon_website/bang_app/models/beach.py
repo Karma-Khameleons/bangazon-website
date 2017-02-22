@@ -1,12 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
-
-import sys 
-sys.path.append('../') 
-
 import datetime
 
-
+# A class needs a view and url to connect the dots
 
 class Customer(models.Model):
 	"""
@@ -16,7 +12,6 @@ class Customer(models.Model):
 		
 	"""
 	user = models.OneToOneField(User, on_delete=models.CASCADE) 
-	date = models.DateTimeField(default=datetime.now, blank=True)
 	street_address = models.CharField(max_length=70)
 	city = models.CharField(max_length=70)
 	state = models.CharField(max_length=70)
@@ -24,7 +19,10 @@ class Customer(models.Model):
 
 
 	def __str__(self):
-	return "{} {}".format(self.user.first_name, self.user.last_name)
+		return "{} {}".format(self.user.first_name, self.user.last_name)
+
+	class Meta:
+		app_label="bang_app"
 
 	
 

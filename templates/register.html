@@ -1,6 +1,9 @@
 {% extends 'bang_app/index.html' %}
 
 {% block content %}
+<div class="col-md-8 col-md-offset-2">
+<h1>Register Now</h1>
+</div>
 <form class="form-horizontal" action="{% url 'bang_app:register_customer' %}" method="post">
 	{% csrf_token %}
 	<div class="form-group">

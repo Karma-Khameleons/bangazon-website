@@ -14,7 +14,7 @@ class Product(models.Model):
 	'''
 
 	name = models.CharField(max_length=100)
-	price = models.CharField(max_length=20)
+	price = models.PositiveIntegerField(max_length=20)
 	description = models.CharField(max_length=500)
 	quantity = models.PositiveIntegerField(default=1)
 	product_type = models.ForeignKey(ProductType, on_delete=models.CASCADE)

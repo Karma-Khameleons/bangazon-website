@@ -17,5 +17,22 @@ def create_payment_type(request):
         cvv=new_payment_type['cvv'],
         expiration_date=new_payment_type['expiration_date'],
         billing_name=new_payment_type['billing_name'],
-        customer=request.user
+        customer=1
+        # customer=request.user
     )
+
+
+
+
+    
+# def create_payment_type(request):
+#     new_payment_type = request.POST 
+#     PaymentType.objects.create(
+#         card_type=new_payment_type['card_type'],
+#         card_number=new_payment_type['card_number'],
+#         cvv=new_payment_type['cvv'],
+#         expiration_date=new_payment_type['expiration_date'],
+#         billing_name=new_payment_type['billing_name'],
+#         customer=1
+#         # customer=request.user
+#     )

@@ -20,7 +20,8 @@ class PaymentType(models.Model):
     cvv = models.CharField(max_length=3)
     expiration_date = models.CharField(max_length=10)
     billing_name = models.CharField(max_length=100)
-    customer = models.ForeignKey(Customer, related_name='payment_types', on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, related_name='payment_types', 
+        on_delete=models.CASCADE)
 
     class Meta:
         verbose_name_plural = 'PaymentTypes'

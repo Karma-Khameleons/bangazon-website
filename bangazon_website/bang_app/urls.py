@@ -8,8 +8,15 @@ urlpatterns = [
     url(r'^$', views.index_view.IndexView.as_view(), name='index'),
     url(r'^success/', views.Success.as_view(), name='success'),
     
-    #URL for Login
+    # Login
+    url(r'^customer_login/', views.login_view.login_customer, name='customer_login'),
     url(r'^login/', views.login_view.Login.as_view(), name='login'),
+
+    # Register
+    url(r'^customer_register/', views.register_view.register_customer, name='customer_register'),
+    url(r'^register/', views.register_view.Register.as_view(), name='register'),
+
+    # Products
     url(r'^create_product/', views.products_view.create_product, name='create_product'),
     url(r'^products/', views.products_view.ProductsView.as_view(), name='products'),
 ]

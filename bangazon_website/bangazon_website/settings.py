@@ -55,7 +55,7 @@ ROOT_URLCONF = 'bangazon_website.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ["bang_app/templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

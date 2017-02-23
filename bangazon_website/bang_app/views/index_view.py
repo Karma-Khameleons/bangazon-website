@@ -8,4 +8,4 @@ from bang_app.models import Product, ProductType
 
 
 class IndexView(TemplateView):
-	template_name = "bang_app/index.html"
+	template_name = "index.html"

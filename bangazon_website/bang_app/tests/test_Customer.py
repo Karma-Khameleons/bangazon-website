@@ -26,49 +26,48 @@ class TestCustomer(TestCase):
 		test_customer_has_email
 	"""
 
-
-	# @classmethod
-	# def setUpClass(self):
+	@classmethod
+	def setUpTestData(self):
 		
-	# 	self.user = User(
-	# 		first_name = "Suzy",
-	# 		last_name = "Bishop",
-	# 		email = "s@s.com",
-	# 		username = "suzybishop",
-	# 		password="password1234"
-	# 		)
+		self.user = User(
+			first_name = "Suzy",
+			last_name = "Bishop",
+			email = "s@s.com",
+			username = "suzybishop",
+			password="password1234"
+			)
 
 
-	# 	self.suzy = Customer(
-	# 		user = self.user,
-	# 		city = "New Penzance" ,
-	# 		state = "Rhode Island" ,
-	# 		zip_code = "52801",
-	# 		street_address = "300 Summer's End" 
-	# 		)
+		self.suzy = Customer(
+			user = self.user,
+			city = "New Penzance" ,
+			state = "Rhode Island" ,
+			zip_code = "52801",
+			street_address = "300 Summer's End" 
+			)
 
 	
 
-	# def test_customer_has_account_creation_date(self):
-	# 	self.assertTrue("", self.suzy.get_creation_date())
+	def test_customer_has_account_creation_date(self):
+		pass
 
-	# def test_customer_has_id(self):
-	# 	self.assertTrue("", self.suzy.get_customer_id())
+	def test_customer_has_id(self):
+		pass
+	
+	def test_customer_has_full_name(self):
+		pass
 
-	# def test_customer_has_full_name(self):
-	# 	self.assertTrue("", self.suzy.User.get_full_name())
+	def test_customer_has_street_address(self):
+		pass
 
-	# def test_customer_has_street_address(self):
-	# 	self.assertTrue("", self.suzy.get_address())
+	def test_customer_has_zip_code(self):
+		pass
 
-	# def test_customer_has_zip_code(self):
-	# 	self.assertTrue("", self.suzy.get_postal_zip())
+	def test_customer_has_state(self):
+		pass
 
-	# def test_customer_has_state(self):
-	# 	self.assertTrue("", self.suzy.get_state())
-
-	# def test_customer_has_email(self):
-	# 	self.assertTrue("", self.suzy)
+	def test_customer_has_email(self):
+		pass
 	
 
 	

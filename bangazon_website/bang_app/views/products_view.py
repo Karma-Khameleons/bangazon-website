@@ -7,16 +7,20 @@ from django.http import HttpResponse, HttpResponseRedirect
 from bang_app.models import Product, ProductType
 
 class ProductsView(TemplateView):
-	template_name = 'bang_app/products.html'
+	template_name = 'products.html'
 
 def create_product(request):
-	new_product = request.POST
-	Product.objects.create(
-		name=new_product['product_name'],
-		description=new_product['description'],
-		price=new_product['price'],
-		quantity=new_product['quantity'],
-		seller=request.user
-	)
 
-	return HttpResponseRedirect(redirect_to='/products')
+	return HttpResponse("Suzy")
+
+	# data = request.POST
+	
+	# Product.objects.create(
+	# 	name=data['product_name'],
+	# 	description=data['description'],
+	# 	price=data['price'],
+	# 	quantity=data['quantity'],
+	# 	seller=request.user
+	# )
+
+	# return HttpResponseRedirect(redirect_to='/products')

@@ -15,7 +15,7 @@ def create_product(request):
 		name=new_product['product_name'],
 		description=new_product['description'],
 		price=new_product['price'],
-		quantity=new_product['quantity']
+		quantity=new_product['quantity'],
 		seller=request.user
 	)
 

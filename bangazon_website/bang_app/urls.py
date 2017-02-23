@@ -13,4 +13,3 @@ urlpatterns = [
     url(r'^create_product/', views.products_view.create_product, name='create_product'),
     url(r'^products/', views.products_view.ProductsView.as_view(), name='products'),
 ]
-

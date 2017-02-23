@@ -1,26 +1,26 @@
-from django.test import TestCase
-from bang_app.models import Product
+# from django.test import TestCase
+# from bang_app.models import Product
 
 
 
 
-class TestAddProduct(TestCase):
+# class TestAddProduct(TestCase):
 
-	'''
-		Purpose:
-			This class tests that a customer can add a product
+# 	'''
+# 		Purpose:
+# 			This class tests that a customer can add a product
 
-		Methods:
-			def test_customer_can_create_product(self):
+# 		Methods:
+# 			def test_customer_can_create_product(self):
 
-		Author:
-			@rtwhitfield84
-	'''
+# 		Author:
+# 			@rtwhitfield84
+# 	'''
 
-	def test_customer_can_create_product(self):
+# 	def test_customer_can_create_product(self):
 
-		ball = Product("ball", "1.99", "It's round", 3, 1, 1)
-		response = self.client.post('/create_product/', {'product': ball})
-		self.assertRedirects(response, '/products/')
-		self.assertTemplateUsed(response, 'products.html')
-	
+# 		ball = Product("ball", "1.99", "It's round", 3, 1, 1)
+# 		response = self.client.post('/create_product/', {'product': ball})
+# 		self.assertRedirects(response, '/products/')
+# 		self.assertTemplateUsed(response, 'products.html')
+# 	

@@ -1,8 +1,7 @@
 from django.test import TestCase 
 import sys
 sys.path.append("../")
-from models import PaymentType
-
+from bang_app.models.payment_type import PaymentType
 
 
 # reconfigure for http requests instead of direct interaction

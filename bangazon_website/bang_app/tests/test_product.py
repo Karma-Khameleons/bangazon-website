@@ -8,7 +8,7 @@ class TestProduct(TestCase):
 
 	'''
 		Purpose:
-			This class tests that matters realted to Product
+			This class tests  matters related to Product
 
 		Methods:
 			def test_product_can_be_created(self):

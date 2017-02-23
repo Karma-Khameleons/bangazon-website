@@ -7,7 +7,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from bang_app.models import PaymentType
 
 class CreatePaymentTypeView(TemplateView):
-    template_name = 'bang_app/create_payment_type.html'
+    template_name = 'create_payment_type.html'
 
 def create_payment_type(request):
     new_payment_type = request.POST 

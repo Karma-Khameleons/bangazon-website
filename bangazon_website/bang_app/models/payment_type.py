@@ -23,7 +23,6 @@ class PaymentType(models.Model):
     customer = models.ForeignKey(Customer, related_name='payment_types', on_delete=models.CASCADE)
 
     class Meta:
-        verbose_name='payment_type'
-
+        verbose_name_plural = 'PaymentTypes'
     def __str__(self):
         return "{}'s {} card".format(self.billing_name, self.card_type)

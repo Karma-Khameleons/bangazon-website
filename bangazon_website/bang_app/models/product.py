@@ -7,8 +7,7 @@ class Product(models.Model):
 
 	'''
 		Puprose-
-			maintain relevant information to product
-		Methods-
+			maintain information relevant to product
 
 		@rtwhitfield84
 

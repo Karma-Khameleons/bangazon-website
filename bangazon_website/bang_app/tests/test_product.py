@@ -2,8 +2,7 @@ from django.test import TestCase
 # from django.test.utils import setup_test_environment
 # from django.contrib.auth.models import User
 from bang_app.models import Product, ProductType
-# import sys
-# sys.path.append('../')
+
 
 # set_up_test_environment():
 
@@ -15,8 +14,7 @@ class TestProduct(TestCase):
 
 		Methods:
 			def test_product_can_be_created(self):
-			def test_customer_can_create_product(self):
-			def test_product_has_type(self):
+			def test_product_fields_contain_correct_value:
 
 		Author:
 			@rtwhitfield84

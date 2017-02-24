@@ -20,8 +20,14 @@ urlpatterns = [
     url(r'^create_product/', views.products_view.create_product, name='create_product'),
     url(r'^new_product/', views.new_product_view.NewProductView.as_view(), name='new_product'),
     url(r'^products/', views.products_view.ProductsView.as_view(), name='products'),
+
+    #Product Categories
+    # url(r'products/(?P<id>)/$', views.product_detail_view.ProductDetailView.as_view(), name="product_category")
+  
+    # Payment Types
     url(r'^payment_type/', views.create_payment_type_view.
         CreatePaymentTypeView.as_view(), name='create_payment_type_view'),
     url(r'^create_payment_type/', views.create_payment_type_view.
         create_payment_type, name='create_payment_type'),
+
 ]

@@ -1,0 +1,19 @@
+{% extends 'index.html' %}
+{% block navbar %}
+<nav>
+	<ul class="nav nav-pills">
+	  <li role="presentation"><a href="#">Home</a></li>
+	  <li role="presentation"><a href="#">Profile</a></li>
+	  <li role="presentation"><a href="#">Shopping Cart</a></li>	
+	  <li role="presentation"><a href="#">Sell an Item</a></li>
+	  <li role="presentation"><a href="#">Log Out</a></li>
+	</ul>
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="col-md-8 col-md-offset-3">
+	<h2>You've successfully added a product to your cart.</h2>
+	<p>You can either <a href="#">check out</a> or continue <a href="{% url 'bang_app:products' %}"> shopping. </a></p>
+</div>
+{% endblock %}

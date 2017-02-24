@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'^register/', views.register_view.Register.as_view(), name='register'),
 
     # Products
+    url(r'^select_category/', views.products_view.SelectCategoryView.as_view(), name='select_category'),
     url(r'^create_product/', views.products_view.create_product, name='create_product'),
     url(r'^new_product/', views.new_product_view.NewProductView.as_view(), name='new_product'),
     url(r'^products/', views.products_view.ProductsView.as_view(), name='products'),

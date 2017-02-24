@@ -1,9 +1,26 @@
 {% extends 'index.html' %}
-
+{% block navbar %}
+<nav>
+	<ul class="nav nav-pills">
+	  <li role="presentation"><a href="#">Home</a></li>
+	  <li role="presentation"><a href="#">Profile</a></li>
+	  <li role="presentation"><a href="#">Shopping Cart</a></li>	
+	  <li role="presentation"><a href="#">Sell an Item</a></li>
+	  <li role="presentation"><a href="#">Log Out</a></li>
+	</ul>
+</nav>
+{% endblock %}
 {% block content %}
-<h1>Placeholder</h1>
 <div class="col-md-8 col-md-offset-2">
-  <p>Sell something <a href="{% url 'bang_app:new_product' %}">here</a></p>
+	<h1>Products by Category</h1>
+		{% for category in category_list %}
+		<div class="col-md-8">
+		<label>{{category.label}}</label><br>
+			<a href="#">{{ category.label }}</a>
+		</div>
+		{% endfor %}
 </div>
-
+<div class="col-md-8 col-md-offset-2">
+	<p>Got something to sell? Do it <a href="{% url 'bang_app:new_product' %}">here</a></p>
+</div>
 {% endblock%}

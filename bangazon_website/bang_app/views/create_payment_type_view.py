@@ -13,6 +13,13 @@ class CreatePaymentTypeView(TemplateView):
 def create_payment_type(request):
     data = request.POST
 
+    """
+    This method-based view is responsible for processing PaymentType POST
+    requests
+
+    Author: Sam Phillips
+    """
+
     # determines whether or not the request is coming from the tests module. If so, it creates a customer and assigns it to the post request's "customer" attribute. If instead the request is coming from a user, it uses csrf magic to assign their customer instance as the "customer" attribute
     try:
         decider = data["customer_pk_from_test"]
@@ -39,9 +46,11 @@ def create_payment_type(request):
         cvv=data['cvv'],
         expiration_date=data['expiration_date'],
         billing_name=data['billing_name'],
-        # customer=data["customer"]
         customer=customer
     )
+    # this is the logic that gets fired when the post request comes from a user and not the tests module
+    # it uses the user's csrf token to create the new PaymentType's 
+    # customer value
     except KeyError as e:
         PaymentType.objects.create(
         card_type=data['card_type'],
@@ -49,25 +58,8 @@ def create_payment_type(request):
         cvv=data['cvv'],
         expiration_date=data['expiration_date'],
         billing_name=data['billing_name'],
-        # customer=data["customer"]
         customer=request.user
     )
 
     return HttpResponseRedirect(redirect_to='/products')
-
-
-# def create_payment_type(request):
-#     data = request.POST 
-#     PaymentType.objects.create(
-#         card_type=data['card_type'],
-#         card_number=data['card_number'],
-#         cvv=data['cvv'],
-#         expiration_date=data['expiration_date'],
-#         billing_name=data['billing_name'],
-#         customer=1
-#         # customer=request.user
-#     )
-
-
-
 

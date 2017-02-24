@@ -36,9 +36,10 @@ class TestRegister(TestCase):
 		"""
 		Page should display the customer's name
 		"""
-		response = self.client.get(reverse('bang_app:create_product'))
+		response = self.client.get(reverse('bang_app:products'))
 		# response: <HttpResponse status_code=200, "text/html; charset=utf-8">
-		self.assertContains(response, "Suzy")
+		# self.assertContains(response, "Suzy")
+		self.assertTemplateUsed('products.html')
 		self.assertEqual(response.status_code, 200)
 
 

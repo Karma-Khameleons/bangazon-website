@@ -18,7 +18,7 @@ class Login(TemplateView):
 def login_customer(request):
     print(request)
 
-    data = request.POST.get
+    data = request.POST
     print("REQUEST POST***********", data)
 
     username = data['username']
@@ -30,4 +30,4 @@ def login_customer(request):
     	login(request=request, user=user) 
     else:
     	return HttpResponseRedirect(redirect_to='/')
-    return HttpResponseRedirect(redirect_to='/success')
+    return HttpResponseRedirect(redirect_to='/products')

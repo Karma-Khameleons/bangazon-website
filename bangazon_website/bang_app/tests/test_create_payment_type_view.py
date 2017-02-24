@@ -22,7 +22,7 @@ class TestCreatePaymentType(TestCase):
         view_request_response = self.client.get(reverse(
             'bang_app:create_payment_type_view'
         ))
-        self.assertContains(view_request_response, "Create new payment type")
+        self.assertContains(view_request_response, "Create a new Payment Type")
         self.assertEqual(view_request_response.status_code, 200)
 
      

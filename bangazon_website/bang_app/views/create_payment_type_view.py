@@ -22,6 +22,7 @@ def create_payment_type(request):
 
     # determines whether or not the request is coming from the tests module. If so, it creates a customer and assigns it to the post request's "customer" attribute. If instead the request is coming from a user, it uses csrf magic to assign their customer instance as the "customer" attribute
     try:
+        # will fail if the request isn't coming from the tests module
         decider = data["customer_pk_from_test"]
         user = User(
             first_name = "Suzy",

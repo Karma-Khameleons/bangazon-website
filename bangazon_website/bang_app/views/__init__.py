@@ -6,4 +6,6 @@ from .login_view import Login
 from .register_view import Register
 from .product_detail_view import ProductDetailView
 from .create_payment_type_view import CreatePaymentTypeView
+from .product_list_view import ProductListView
+
 

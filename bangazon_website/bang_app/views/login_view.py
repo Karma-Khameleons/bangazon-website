@@ -8,26 +8,27 @@ from django.http import HttpResponse, HttpResponseRedirect
 from bang_app.models import Product, ProductType, Customer
 
 
-class LoginSuccess(LoginRequiredMixin, TemplateView):
-    template_name = 'create_product.html'
-
 class Login(TemplateView):
     template_name = 'login.html'
 
 	
 def login_customer(request):
-    print(request)
+    """
+    Purpose: Login a customer using their username and password
+    Author: Abby
 
+    """
     data = request.POST
-    print("REQUEST POST***********", data)
 
     username = data['username']
     password = data['password']
 
-    user = authenticate(username=username, password=password) #Line 5
+    user = authenticate(username=username, password=password)
 
     if user is not None:
     	login(request=request, user=user) 
     else:
+        # Not successful, redirect to index page
     	return HttpResponseRedirect(redirect_to='/')
+    # Successful, redirect to view the products
     return HttpResponseRedirect(redirect_to='/products')

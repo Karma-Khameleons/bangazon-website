@@ -7,12 +7,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from bang_app.models import Product, ProductType
 
 class ProductDetailView(TemplateView):
-  template_name = 'bang_app/product_detail.html'
+  template_name = 'product_detail.html'
 
-def list_product_detail(request):
-
-  return HttpResponse('product detail view')
-
-
-
+    def list_product_detail(request):
+      return HttpResponse('product detail view')
 

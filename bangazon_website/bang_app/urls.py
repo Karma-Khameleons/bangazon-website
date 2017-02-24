@@ -7,7 +7,7 @@ app_name = 'bang_app'
 urlpatterns = [
     url(r'^$', views.index_view.IndexView.as_view(), name='index'),
     url(r'^success/', views.Success.as_view(), name='success'),
-    
+
     # Login
     url(r'^customer_login/', views.login_view.login_customer, name='customer_login'),
     url(r'^login/', views.login_view.Login.as_view(), name='login'),
@@ -20,4 +20,5 @@ urlpatterns = [
     url(r'^create_product/', views.products_view.create_product, name='create_product'),
     url(r'^new_product/', views.new_product_view.NewProductView.as_view(), name='new_product'),
     url(r'^products/', views.products_view.ProductsView.as_view(), name='products'),
+    url(r'^product_detail/', views.product_detail_view.ProductDetailView.as_view(), name='product_detail'),
 ]

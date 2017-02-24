@@ -6,12 +6,6 @@ from django.contrib.auth import logout, login, authenticate
 from django.http import HttpResponse, HttpResponseRedirect
 from bang_app.models import Product, ProductType, Customer
 
-class SelectCategoryView(TemplateView):
-	template_name = 'select_category.html'
-
-	def get(self, request):
-		self.category_list = ProductType.objects.all()
-		return render(request, self.template_name, {'category_list': self.category_list})
 
 class ProductsView(TemplateView):
 	template_name = 'products.html'

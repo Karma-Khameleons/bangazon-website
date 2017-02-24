@@ -19,12 +19,12 @@
 <div class="input-group">
   <form class="" action="{% url 'bang_app:new_product' %}" method="post">
     {% csrf_token %}
-    <select class="form-control" name="label">
+    <select class="form-control" name="category_list">
         <option>Select Category</option>
-        <option value="new">Create New Category</option>
-    {% for c in categories %}
-        <option value="{{ c.id }}">{{ c }}</option>
+    {% for category in category_list %}
+        <option value="{{ category.id }}">{{ category }}</option>
     {% endfor %}
+        <option>Create New Category</option>
     </select>
   <button type="submit">Create New Product</button>
   </form>

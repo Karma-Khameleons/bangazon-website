@@ -1,4 +1,5 @@
-from .products_view import ProductsView, SelectCategoryView, create_product
+from .products_view import ProductsView, create_product
+from .select_category_view import  SelectCategoryView
 from .new_product_view import NewProductView
 from .index_view import IndexView
 from .success_view import Success

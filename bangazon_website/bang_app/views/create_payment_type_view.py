@@ -10,7 +10,7 @@ class CreatePaymentTypeView(TemplateView):
     template_name = 'create_payment_type.html'
 
 def create_payment_type(request):
-    new_payment_type = request.POST 
+    new_payment_type = request.POST["payment_type"]
     PaymentType.objects.create(
         card_type=new_payment_type['card_type'],
         card_number=new_payment_type['card_number'],
@@ -24,7 +24,7 @@ def create_payment_type(request):
 
 
 
-    
+
 # def create_payment_type(request):
 #     new_payment_type = request.POST 
 #     PaymentType.objects.create(
@@ -36,3 +36,7 @@ def create_payment_type(request):
 #         customer=1
 #         # customer=request.user
 #     )
+
+
+
+

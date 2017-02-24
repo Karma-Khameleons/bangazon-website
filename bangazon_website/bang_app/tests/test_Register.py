@@ -10,35 +10,19 @@ from bang_app.models.customer import Customer
 
 
 class TestRegister(TestCase):
+	"""
+	Purpose: This class tests matters related to Register
 
-	# @classmethod
-	# def setUpClass(self):
-		
-	# 	self.user = User(
-	# 		first_name = "Suzy",
-	# 		last_name = "Bishop",
-	# 		email = "s@s.com",
-	# 		username = "suzybishop",
-	# 		password="password1234"
-	# 		)
+	Methods:
+		test_register_should_redirect_to_products
+
+	Author: Abby
+	"""
 
 
-	# 	self.suzy = Customer(
-	# 		user = self.user,
-	# 		city = "New Penzance" ,
-	# 		state = "Rhode Island" ,
-	# 		zip_code = "52801",
-	# 		street_address = "300 Summer's End" 
-	# 		)
-
-
-	def test_page_has_customer_name(self):
-		"""
-		Page should display the customer's name
-		"""
+	def test_register_should_redirect_to_products(self):
 		response = self.client.get(reverse('bang_app:products'))
 		# response: <HttpResponse status_code=200, "text/html; charset=utf-8">
-		# self.assertContains(response, "Suzy")
 		self.assertTemplateUsed('products.html')
 		self.assertEqual(response.status_code, 200)
 

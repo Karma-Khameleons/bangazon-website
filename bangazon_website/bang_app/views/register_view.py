@@ -14,22 +14,32 @@ class Register(TemplateView):
     template_name = 'register.html'
 
 
-
 def register_customer(request):
     """
-    Resources: https://docs.djangoproject.com/en/1.10/ref/contrib/auth/#django.contrib.auth.models.UserManager
+    Purpose: Register a customer and immediently login
+    Author: Abby
+
     """
+    # create_user is what holds the username/password. (Django magic)
+    # then, we pass that into the 1:1 field on our model, Customer
+    # send all of the information to login_customer on login_view.py
+
     data = request.POST
 
-    User.objects.create_user(
+    new_user = User.objects.create_user(
         username = data['username'], 
         email = data['email'],
         password = data['password'],
         first_name = data['first_name'],
         last_name = data['last_name'],
+        )
+
+    Customer.objects.create(
+        user = new_user,
         street_address = data['street_address'],
         city = data['city'],
         state = data['state'],
-        zip = data['zip']
+        zip_code = data['zip_code']
         )
-    return login_customer(request)
+
+    return login_view.login_customer(request)

@@ -14,7 +14,7 @@ class Product(models.Model):
 	'''
 
 	name = models.CharField(max_length=100)
-	price = models.IntegerField(default=0)
+	price = models.DecimalField(max_digits=20, decimal_places=2)
 	description = models.CharField(max_length=500)
 	quantity = models.PositiveIntegerField(default=1)
 	product_type = models.ForeignKey(ProductType, on_delete=models.CASCADE)

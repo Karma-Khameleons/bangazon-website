@@ -26,13 +26,13 @@ List steps to test your solution
 
 
 ## Unit Testing
-[ ] There are new unit tests in this PR, and I verify that there is full coverage of all new code.
-[ ] I certify that all existing tests pass
+- [ ] There are new unit tests in this PR, and I verify that there is full coverage of all new code.
+- [ ] I certify that all existing tests pass
 
 ## Documentation
 
-[ ] There is new documentation in this pull request that must be reviewed..
-[ ] I added documentation for any new classes/methods
+- [ ] There is new documentation in this pull request that must be reviewed..
+- [ ] I added documentation for any new classes/methods
 
 ## Deploy Notes
 

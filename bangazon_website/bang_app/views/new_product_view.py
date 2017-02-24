@@ -12,10 +12,6 @@ class NewProductView(TemplateView):
 
 	def get(self, request):
 		self.categories = ProductType.objects.all()
+		print("@@@@@@@@@@@@@", self.categories)
 		return render(request, self.template_name, {'categories': self.categories})
 
-
-	# categories = ProductType.objects.all()
-	# .values_list('label', flat=True)
-	# print("CATEGORIES@@@@@@@@@@@@@", self.categories)
-	# categories = ProductType.objects.all()

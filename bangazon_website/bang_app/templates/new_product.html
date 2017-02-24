@@ -24,7 +24,7 @@
     <select class="form-control" name="categories">
         <option>Select Category</option>
     {% for c in categories %}
-        <option value="{{ c }}">{{ c }}</option>
+        <option value="{{ c.id }}">{{ c }}</option>
     {% endfor %}
     </select>
     <input type="text" class="form-control" name="product_name" value="" placeholder="Enter Product Name">

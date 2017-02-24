@@ -9,6 +9,6 @@ from bang_app.models import Product, ProductType
 class ProductDetailView(TemplateView):
   template_name = 'product_detail.html'
 
-    def list_product_detail(request):
-      return HttpResponse('product detail view')
+def list_product_detail(request):
+  return HttpResponse('product detail view')
 

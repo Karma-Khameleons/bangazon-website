@@ -59,7 +59,7 @@ def create_payment_type(request):
         cvv=data['cvv'],
         expiration_date=data['expiration_date'],
         billing_name=data['billing_name'],
-        customer=request.user
+        customer=Customer.objects.get(user=request.user)
     )
 
     return HttpResponseRedirect(redirect_to='/products')

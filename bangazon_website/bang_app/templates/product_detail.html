@@ -1,0 +1,9 @@
+{% extends 'index.html' %}
+{% block navbar %}{% endblock %}
+
+{% block content %}
+<h1>this is the product detail view</h1>
+<form class="" action="{% url 'bang_app:product_detail' %}" method="post">
+    {% csrf_token %}
+
+{% endblock %}

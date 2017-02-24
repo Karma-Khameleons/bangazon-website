@@ -4,3 +4,4 @@ __pycache__
 *.db-journal
 configuration.py
 db.sqlite3
+migrations/

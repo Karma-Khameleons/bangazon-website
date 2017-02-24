@@ -11,7 +11,9 @@ from bang_app.views import login_view
 
 
 class Register(TemplateView):
-    template_name = 'bang_app/register.html'
+    template_name = 'register.html'
+
+
 
 def register_customer(request):
     """

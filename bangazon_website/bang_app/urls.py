@@ -18,6 +18,7 @@ urlpatterns = [
 
     # Products
     url(r'^create_product/', views.products_view.create_product, name='create_product'),
+    url(r'^new_product/', views.new_product_view.NewProductView.as_view(), name='new_product'),
     url(r'^products/', views.products_view.ProductsView.as_view(), name='products'),
     url(r'^payment_type/', views.create_payment_type_view.
         CreatePaymentTypeView.as_view(), name='create_payment_type_view'),

@@ -15,10 +15,8 @@ class TestCustomer(TestCase):
 	Purpose: Test Customer
 	Author: Abby
 	Tests: 
-		test_customer_has_properties
-		test_customer_is_instance
-		test_customer_has_account_creation_date
 		test_customer_has_id
+		test_customer_is_instance
 		test_customer_has_full_name
 		test_customer_has_street_address
 		test_customer_has_zip_code
@@ -48,26 +46,26 @@ class TestCustomer(TestCase):
 
 	
 
-	def test_customer_has_account_creation_date(self):
-		pass
-
 	def test_customer_has_id(self):
 		pass
+
+	def test_suzy_is_instance_of_customer(self):
+		self.assertIsInstance(self.suzy, Customer)
 	
 	def test_customer_has_full_name(self):
-		pass
+		self.assertEqual("Suzy Bishop", self.user.first_name + " " + self.user.last_name)
 
 	def test_customer_has_street_address(self):
-		pass
+		self.assertEqual("300 Summer's End", self.suzy.street_address)
 
 	def test_customer_has_zip_code(self):
-		pass
+		self.assertEqual("52801", self.suzy.zip_code)
 
 	def test_customer_has_state(self):
-		pass
+		self.assertEqual("Rhode Island", self.suzy.state)
 
 	def test_customer_has_email(self):
-		pass
+		self.assertEqual("s@s.com", self.user.email)
 	
 
 	

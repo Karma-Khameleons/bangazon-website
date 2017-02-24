@@ -9,6 +9,9 @@ from bang_app.models import Product, ProductType, Customer
 class ProductsView(TemplateView):
 	template_name = 'products.html'
 
+	def get(self, request):
+		self.category_list = ProductType.objects.all()
+		return render(request, self.template_name, {'category_list': self.category_list})
 
 def create_product(request):
 
@@ -26,3 +29,5 @@ def create_product(request):
 	)
 
 	return HttpResponseRedirect(redirect_to='/products')
+
+

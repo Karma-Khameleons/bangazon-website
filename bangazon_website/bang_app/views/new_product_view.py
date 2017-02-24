@@ -7,4 +7,15 @@ from django.http import HttpResponse, HttpResponseRedirect
 from bang_app.models import Product, ProductType
 
 class NewProductView(TemplateView):
+
 	template_name = 'new_product.html'
+
+	def get(self, request):
+		self.categories = ProductType.objects.all()
+		return render(request, self.template_name, {'categories': self.categories})
+
+
+	# categories = ProductType.objects.all()
+	# .values_list('label', flat=True)
+	# print("CATEGORIES@@@@@@@@@@@@@", self.categories)
+	# categories = ProductType.objects.all()

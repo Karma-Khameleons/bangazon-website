@@ -21,6 +21,12 @@
 <div class="input-group">
   <form class="" action="{% url 'bang_app:create_product' %}" method="post">
     {% csrf_token %}
+    <select class="form-control" name="categories">
+        <option>Select Category</option>
+    {% for c in categories %}
+        <option value="{{ c }}">{{ c }}</option>
+    {% endfor %}
+    </select>
     <input type="text" class="form-control" name="product_name" value="" placeholder="Enter Product Name">
     <input type="text" class="form-control" name="label" value="" placeholder="Enter Category">
     <input type="text" class="form-control" name="description" value="" placeholder="Enter Description">

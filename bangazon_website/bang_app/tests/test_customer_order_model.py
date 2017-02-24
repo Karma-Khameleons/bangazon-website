@@ -16,7 +16,7 @@ class TestCustomerOrderCreation(TestCase):
             email = "s@s.com",
             username = "suzybishop",
             password="password1234"
-            )
+        )
 
         self.suzy = Customer(
             user = self.user,
@@ -24,7 +24,7 @@ class TestCustomerOrderCreation(TestCase):
             state = "Rhode Island" ,
             zip_code = "52801",
             street_address = "300 Summer's End" 
-            )
+        )
 
         self.payment = PaymentType(
             card_type = "Amex",
@@ -33,14 +33,13 @@ class TestCustomerOrderCreation(TestCase):
             expiration_date = "05/20",
             billing_name = "Suzy Bishop",
             customer = self.suzy
-            )
+        )
 
         self.new_customer_order = CustomerOrder(
             active_order=1, 
             customer=self.suzy, 
             payment_type=self.payment
         )
-        # self.new_customer_order = CustomerOrder(1, 1, 1)
 
 
     def test_new_order_is_of_class_CustomerOrder(self):
@@ -50,7 +49,3 @@ class TestCustomerOrderCreation(TestCase):
         self.assertEqual(self.new_customer_order.active_order, 1)
         self.assertEqual(self.new_customer_order.customer, self.suzy)
         self.assertEqual(self.new_customer_order.payment_type, self.payment)
-
-
-
-

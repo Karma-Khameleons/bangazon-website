@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+
+{% block navbar %}
+<nav>
+    <ul class="nav nav-pills">
+      <li role="presentation"><a href="#">Home</a></li>
+      <li role="presentation"><a href="#">Profile</a></li>
+      <li role="presentation"><a href="#">Shopping Cart</a></li>    
+      <li role="presentation"><a href="#">Sell an Item</a></li>
+      <li role="presentation"><a href="#">Log Out</a></li>
+    </ul>
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="col-md-8 col-md-offset-2">
+  <h1>Create a new Payment Type</h1>
+</div>
+
+{# form to create a new Payment Type. Grabs the user's csrf token to assign the Payment Type to their customer instance #}
+<div class="input-group">
+  <form class="" action="{% url 'bang_app:create_payment_type' %}" method="post">
+    {% csrf_token %}
+    <input type="text" class="form-control" name="card_type" value="" placeholder="Enter Card Type (i.e. Visa)">
+    <input type="text" class="form-control" name="card_number" value="" placeholder="Enter Credit Card Number">
+    <input type="text" class="form-control" name="cvv" value="" placeholder="Enter 3-digit Security Code">
+    <input type="text" class="form-control" name="expiration_date" value="" placeholder="Enter Expiration Date">
+    <input type="text" class="form-control" name="billing_name" value="" placeholder="Enter Name on Card">
+  <button type="submit">Create New Payment Type</button>
+  </form>
+</div>
+
+{% endblock %}

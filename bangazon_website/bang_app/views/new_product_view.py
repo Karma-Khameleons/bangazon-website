@@ -6,6 +6,5 @@ from django.contrib.auth import logout, login, authenticate
 from django.http import HttpResponse, HttpResponseRedirect
 from bang_app.models import Product, ProductType
 
-
-class IndexView(TemplateView):
-	template_name = "index.html"
+class NewProductView(TemplateView):
+	template_name = 'new_product.html'

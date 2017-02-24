@@ -4,19 +4,25 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth import logout, login, authenticate
 from django.http import HttpResponse, HttpResponseRedirect
-from bang_app.models import Product, ProductType
+from bang_app.models import Product, ProductType, Customer
 
 class ProductsView(TemplateView):
-	template_name = 'bang_app/products.html'
+	template_name = 'products.html'
+
 
 def create_product(request):
-	new_product = request.POST
+
+	data = request.POST
+
+	product_category = ProductType.objects.create(label=data['label'])
+	
 	Product.objects.create(
-		name=new_product['product_name'],
-		description=new_product['description'],
-		price=new_product['price'],
-		quantity=new_product['quantity'],
-		seller=request.user
+		name=data['product_name'],
+		description=data['description'],
+		price=data['price'],
+		quantity=data['quantity'],
+		product_type=ProductType.objects.get(pk=product_category.pk),
+		seller=Customer.objects.get(user=request.user)
 	)
 
 	return HttpResponseRedirect(redirect_to='/products')

@@ -1,4 +1,4 @@
-{% extends 'bang_app/index.html' %}
+{% extends 'index.html' %}
 
 {% block navbar %}
 <nav>
@@ -15,20 +15,19 @@
 {% block content %}
 <div class="col-md-8 col-md-offset-2">
   <h1>Enter the product information to add a new product for sale</h1>
+  <h2>Hello, Suzy!</h2>
 </div>
 
 <div class="input-group">
-  <form class="" action="{% url bang_app:create_product %}" method="post">
+  <form class="" action="{% url 'bang_app:create_product' %}" method="post">
     {% csrf_token %}
     <input type="text" class="form-control" name="product_name" value="" placeholder="Enter Product Name">
+    <input type="text" class="form-control" name="label" value="" placeholder="Enter Category">
     <input type="text" class="form-control" name="description" value="" placeholder="Enter Description">
     <input type="text" class="form-control" name="price" value="" placeholder="Enter Price">
     <input type="text" class="form-control" name="quantity" value="" placeholder="Enter Quantity">
-  </form>
   <button type="submit">Create New Product</button>
+  </form>
 </div>
 
 {% endblock %}
-
-
-

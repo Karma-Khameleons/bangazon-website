@@ -49,3 +49,12 @@ class TestCustomerOrderCreation(TestCase):
         self.assertEqual(self.new_customer_order.active_order, 1)
         self.assertEqual(self.new_customer_order.customer, self.suzy)
         self.assertEqual(self.new_customer_order.payment_type, self.payment)
+        self.assertEqual(self.new_customer_order.line_items, [])
+
+
+
+
+
+
+
+

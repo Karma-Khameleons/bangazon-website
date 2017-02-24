@@ -10,18 +10,19 @@ sys.path.append('../')
 from bang_app.models.customer import Customer
 
 
-# class TestLogin(TestCase):
+class TestLogin(TestCase):
+	"""
+	Purpose: This class tests matters related to Login
 
-# 	def test_customer_can_login(self):
-# 		"""
-# 		Customer can login
-# 		"""
-# 		c = Client()
-# 		user = dict({'username': 'abby', 'password': 'pass1234'})
-# 		test_login = login_view.login_customer(c.request)
-# 		print("TEST THE LOGIN **************", test_login)
-# 		response = c.get(reverse('bang_app:customer_login'))
-# 		print(response)
-		
-# 		self.assertEqual("", user)
-# 		self.assertEqual("", response.status_code)
+	Methods:
+		test_register_should_redirect_to_products
+
+	Author: Abby
+	"""
+
+
+	def test_login_should_redirect_to_products(self):
+		response = self.client.get(reverse('bang_app:products'))
+		# response: <HttpResponse status_code=200, "text/html; charset=utf-8">
+		self.assertTemplateUsed('products.html')
+		self.assertEqual(response.status_code, 200)

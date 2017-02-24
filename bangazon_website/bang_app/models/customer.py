@@ -12,9 +12,9 @@ class Customer(models.Model):
 		
 	"""
 	user = models.OneToOneField(User, on_delete=models.CASCADE) 
-	street_address = models.CharField(max_length=70)
-	city = models.CharField(max_length=70)
-	state = models.CharField(max_length=70)
+	street_address = models.CharField(max_length=50)
+	city = models.CharField(max_length=50)
+	state = models.CharField(max_length=25)
 	zip_code = models.CharField(max_length=10)
 
 

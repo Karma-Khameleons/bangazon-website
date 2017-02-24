@@ -26,7 +26,7 @@ class TestCreatePaymentType(TestCase):
         self.assertEqual(view_request_response.status_code, 200)
 
      
-    # commenting out because having too much trouble passing a customer instance to the view 
+
     def test_customer_can_create_new_payment_type(self):
         self.user = User(
             first_name = "Suzy",
@@ -51,8 +51,8 @@ class TestCreatePaymentType(TestCase):
             "cvv": "444", 
             "expiration_date": "04/44", 
             "billing_name": "Mr. Rogers",
+            # This next variable is the flag that the view watches for. If it's present in the request, the view will handle it appropriately knowing the request is coming from the tests module
             "customer_pk_from_test": "1"
-            # "customer": self.suzy
         })
         self.assertEqual(post_response.status_code, 302)
 

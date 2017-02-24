@@ -17,6 +17,7 @@
   <h1>Create a new Payment Type</h1>
 </div>
 
+{# form to create a new Payment Type. Grabs the user's csrf token to assign the Payment Type to their customer instance #}
 <div class="input-group">
   <form class="" action="{% url 'bang_app:create_payment_type' %}" method="post">
     {% csrf_token %}

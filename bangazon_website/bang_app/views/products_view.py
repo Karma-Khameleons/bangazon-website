@@ -18,17 +18,36 @@ def create_product(request):
 
 	data = request.POST
 
-	product_category = ProductType.objects.create(label=data['label'])
+	if 'label' in data:
 
-	print("PRDCAT@@@@@@@@@@@@@@@",product_category)
-	
-	Product.objects.create(
-		name=data['product_name'],
-		description=data['description'],
-		price=data['price'],
-		quantity=data['quantity'],
-		product_type=ProductType.objects.get(pk=product_category.pk),
-		seller=Customer.objects.get(user=request.user)
-	)
+		product_category = ProductType.objects.create(label=data['label'])
 
-	return HttpResponseRedirect(redirect_to='/products')
+		print("PRDCAT@@@@@@@@@@@@@@@",product_category)
+		
+		Product.objects.create(
+			name=data['product_name'],
+			description=data['description'],
+			price=data['price'],
+			quantity=data['quantity'],
+			product_type=ProductType.objects.get(pk=product_category.pk),
+			seller=Customer.objects.get(user=request.user)
+		)
+
+		return HttpResponseRedirect(redirect_to='/products')
+
+	else:
+
+		# product_category = ProductType.objects.get(pk=data['pk'])
+
+		print("OOOOOLLLLLLLDDDDDDPRDCAT@@@@@@@@@@@@@@@", data['pk'])
+		
+		Product.objects.create(
+			name=data['product_name'],
+			description=data['description'],
+			price=data['price'],
+			quantity=data['quantity'],
+			product_type=ProductType.objects.get(pk=data['pk']),
+			seller=Customer.objects.get(user=request.user)
+		)
+
+		return HttpResponseRedirect(redirect_to='/products')

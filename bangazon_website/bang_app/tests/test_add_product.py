@@ -30,5 +30,4 @@ class TestAddProduct(TestCase):
     def test_customer_can_create_product(self):
 
         response = self.client.get('bang_app:create_product')
-        self.assertContains(response, "Products")
         self.assertTemplateUsed('products.html')

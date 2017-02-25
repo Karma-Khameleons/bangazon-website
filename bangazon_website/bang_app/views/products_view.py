@@ -21,8 +21,6 @@ def create_product(request):
 	if 'label' in data:
 
 		product_category = ProductType.objects.create(label=data['label'])
-
-		print("PRDCAT@@@@@@@@@@@@@@@",product_category)
 		
 		Product.objects.create(
 			name=data['product_name'],
@@ -37,9 +35,6 @@ def create_product(request):
 
 	else:
 
-		# product_category = ProductType.objects.get(pk=data['pk'])
-
-		print("OOOOOLLLLLLLDDDDDDPRDCAT@@@@@@@@@@@@@@@", data['pk'])
 		
 		Product.objects.create(
 			name=data['product_name'],

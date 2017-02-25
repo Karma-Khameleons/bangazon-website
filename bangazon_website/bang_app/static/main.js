@@ -8,6 +8,8 @@ $('#cat-list').on('change', function() {
 		$('#cat-list').addClass('hidden');
 		$('#cats').addClass('hidden');
 	if (this.value != 'new')
+		$('#product_type_id').text(this.value);
+		console.log("id", this.value);
 		$('#oldCat').removeClass('hidden');
 		$('#cat-list').addClass('hidden');
 		$('#cats').addClass('hidden');

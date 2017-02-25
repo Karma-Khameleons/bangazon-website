@@ -9,7 +9,7 @@ from bang_app.models import Product, ProductType
 class NewProductView(TemplateView):
 	template_name = 'new_product.html'
 
-	# def get(self, request):
-	# 	self.categories = ProductType.objects.all()
-	# 	print("@@@@@@@@@@@@@", self.categories)
-	# 	return render(request, self.template_name, {'categories': self.categories})
+	def get(self, request):
+		self.category_list = ProductType.objects.all()
+		print("hiiiiiiii", self.category_list)
+		return render(request, 'new_product.html', {'category_list': self.category_list})

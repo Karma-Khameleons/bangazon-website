@@ -13,9 +13,40 @@
 {% endblock %}
 
 {% block content %}
-<div class="col-md-8 col-md-offset-2">
+<div class="col-md-8 col-md-offset-2 listen">
+
+<div id="cats" class="input-group">
+  <h1>Select your category</h1>
+  <form class="" action="{% url 'bang_app:new_product' %}" method="post">
+    {% csrf_token %}
+    <select id="cat-list" class="form-control" name="category_list">
+        <option>Select Category</option>
+    {% for category in category_list %}
+        <option value="{{ category.id }}">{{ category }}</option>
+    {% endfor %}
+        <option value="new">Create New Category</option>
+    </select>
+  </form>
+</div>
+</div>
+<div id="newCat" class="col-md-8 col-md-offset-2 hidden">
   <h1>Enter the product information to add a new product for sale</h1>
 
+<div  class="input-group">
+  <form class="" action="{% url 'bang_app:create_product' %}" method="post">
+    {% csrf_token %}
+    </select>
+    <input type="text" class="form-control" name="product_name" value="" placeholder="Enter Product Name">
+    <input type="text" class="form-control" name="label" value="" placeholder="Enter Category">
+    <input type="text" class="form-control" name="description" value="" placeholder="Enter Description">
+    <input type="text" class="form-control" name="price" value="" placeholder="Enter Price">
+    <input type="text" class="form-control" name="quantity" value="" placeholder="Enter Quantity">
+  <button type="submit">Create New Product</button>
+  </form>
+</div>
+</div>
+<div id="oldCat" class="col-md-8 col-md-offset-2 hidden">
+<h1>Enter the product information to add a new product for sale</h1>
 <div class="input-group">
   <form class="" action="{% url 'bang_app:create_product' %}" method="post">
     {% csrf_token %}

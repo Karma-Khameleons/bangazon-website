@@ -1,8 +1,10 @@
-console.log("hi");
+/***************************************
+Jquery used to listen for select change
+event, show or hide the proper product
+creation form and send the correct 
+ProductType id value
+****************************************/
 $('#cat-list').on('change', function() {
-	console.log("this.value", this.value);
-	// console.log("this.value", this.value);
-	// console.log("this.value", this.value);
 	if (this.value == 'new') {
 		$('#newCat').removeClass('hidden');
 		$('#cat-list').addClass('hidden');

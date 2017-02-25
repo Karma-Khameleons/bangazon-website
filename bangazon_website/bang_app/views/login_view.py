@@ -32,3 +32,8 @@ def login_customer(request):
     	return HttpResponseRedirect(redirect_to='/')
     # Successful, redirect to view the products
     return HttpResponseRedirect(redirect_to='/products')
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect(redirect_to='/')
+

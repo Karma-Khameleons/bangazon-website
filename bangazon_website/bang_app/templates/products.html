@@ -2,7 +2,7 @@
 {% block navbar %}
 <nav>
 	<ul class="nav nav-pills">
-	  <li role="presentation"><a href="#">Home</a></li>
+	<li role="presentation"><a href="/register">Register</a></li>
 	  <li role="presentation"><a href="#">Profile</a></li>
 	  <li role="presentation"><a href="#">Shopping Cart</a></li>	
 	  <li role="presentation"><a href="#">Sell an Item</a></li>
@@ -21,7 +21,7 @@
 		{% endfor %}
 </div>
 <div class="col-md-8 col-md-offset-2">
-	<p>Got something to sell? Do it <a href="{% url 'bang_app:select_category' %}">here</a></p>
+	<p>Got something to sell? Do it <a href="{% url 'bang_app:new_product' %}">here</a></p>
   <p>Create a new Payment Type <a href="{% url 'bang_app:create_payment_type_view' %}">here</a></p>
 
 </div>

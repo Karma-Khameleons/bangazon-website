@@ -11,13 +11,24 @@
 {% block navbar %}
 <nav>
 	<ul class="nav nav-pills">
-	  <li role="presentation"><a href="#">Home</a></li>
-	  <li role="presentation"><a href="/register">Register</a></li>
+	{% if user.is_authenticated %}
+		<li role="presentation"><a href="{% url 'bang_app:products' %}">Products</a></li>
+		<li role="presentation"><a href="#">Shopping Cart</a></li>	
+		<li role="presentation"><a href="{% url 'bang_app:new_product' %}">Sell an Item</a></li>
+		<li role="presentation"><a href="#">Profile</a></li>
+		<li role="presentation"><a href="{% url 'bang_app:customer_logout' %}">Logout</a></li>
+	{% else %}
+		<li role="presentation"><a href="{% url 'bang_app:login' %}">Login</a></li>
+		<li role="presentation"><a href="{% url 'bang_app:register' %}">Register</a></li>
+		<li role="presentation"><a href="{% url 'bang_app:products' %}">Products</a></li>
+	{% endif %}
 	</ul>
 </nav>
 {% endblock %}
 
-{% block content %}{% endblock %}
+{% block content %}
+<h1>Welcome to Bangazon</h1>
+{% endblock %}
 
 <script
   src="https://code.jquery.com/jquery-3.1.1.slim.min.js"

@@ -1,33 +1,58 @@
 {% extends 'index.html' %}
 
-{% block navbar %}
-<nav>
-	<ul class="nav nav-pills">
-	  <li role="presentation"><a href="#">Home</a></li>
-	  <li role="presentation"><a href="#">Profile</a></li>
-	  <li role="presentation"><a href="#">Shopping Cart</a></li>	
-	  <li role="presentation"><a href="#">Sell an Item</a></li>
-	  <li role="presentation"><a href="#">Log Out</a></li>
-	</ul>
-</nav>
-{% endblock %}
 
 {% block content %}
-<div class="col-md-8 col-md-offset-2">
-  <h1>Enter the product information to add a new product for sale</h1>
-  <h2>Hello, Suzy!</h2>
+<div class="col-md-8 col-md-offset-2 listen">
+ {# Inital category select menu #}
+  <div id="cats" class="input-group">
+    <h1>Select your category</h1>
+      <form class="" action="{% url 'bang_app:new_product' %}" method="post">
+          {% csrf_token %}
+          <select id="cat-list" class="form-control" name="category_list">
+              <option>Select Category</option>
+          {% for category in category_list %}
+              <option value="{{ category.id }}">{{ category }}</option>
+          {% endfor %}
+              <option value="new">Create New Category</option>
+        </select>
+      </form>
+  </div>
 </div>
 
-<div class="input-group">
-  <form class="" action="{% url 'bang_app:create_product' %}" method="post">
-    {% csrf_token %}
-    <input type="text" class="form-control" name="product_name" value="" placeholder="Enter Product Name">
-    <input type="text" class="form-control" name="label" value="" placeholder="Enter Category">
-    <input type="text" class="form-control" name="description" value="" placeholder="Enter Description">
-    <input type="text" class="form-control" name="price" value="" placeholder="Enter Price">
-    <input type="text" class="form-control" name="quantity" value="" placeholder="Enter Quantity">
-  <button type="submit">Create New Product</button>
-  </form>
+
+<div id="newCat" class="col-md-8 col-md-offset-2 hidden">
+{# Form for creating new category and product #}
+  <h1>Enter the product information to add a new product for sale</h1>
+  <div  class="input-group">
+      <form class="" action="{% url 'bang_app:create_product' %}" method="post">
+          {% csrf_token %}
+          </select>
+          <input type="text" class="form-control" name="product_name" value="" placeholder="Enter Product Name">
+          <input type="text" class="form-control" name="label" value="" placeholder="Enter Category">
+          <input type="text" class="form-control" name="description" value="" placeholder="Enter Description">
+          <input type="text" class="form-control" name="price" value="" placeholder="Enter Price">
+          <input type="text" class="form-control" name="quantity" value="" placeholder="Enter Quantity">
+        <button type="submit">Create New Product</button>
+      </form>
+  </div>
+</div>
+
+
+<div id="oldCat" class="col-md-8 col-md-offset-2 hidden">
+{# Form for creating product with existing category #}
+  <h1>Enter the product information to add a new product for sale</h1>
+  <div class="input-group">
+      <form class="" action="{% url 'bang_app:create_product' %}" method="post">
+          {% csrf_token %}
+          </select>
+          <input type="text" class="form-control" name="product_name" value="" placeholder="Enter Product Name">
+          <input id="product_type_id" type="text" class="form-control hidden" name="pk" value="" placeholder="Enter Category">
+          <input type="text" class="form-control" name="description" value="" placeholder="Enter Description">
+          <input type="text" class="form-control" name="price" value="" placeholder="Enter Price">
+          <input type="text" class="form-control" name="quantity" value="" placeholder="Enter Quantity">
+        <button type="submit">Create New Product</button>
+      </form>
+  </div>
 </div>
 
 {% endblock %}

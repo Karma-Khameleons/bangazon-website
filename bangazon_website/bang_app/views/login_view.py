@@ -22,12 +22,12 @@ def login_customer(request):
     user = authenticate(username=username, password=password)
 
     if user is not None:
-    	login(request=request, user=user) 
+    	login(request=request, user=user)
     else:
         # Not successful, redirect to index page
     	return HttpResponseRedirect(redirect_to='/')
     # Successful, redirect to view the products
-    return HttpResponseRedirect(redirect_to='/products')
+    return HttpResponseRedirect(redirect_to='/categories')
 
 def logout_view(request):
     logout(request)

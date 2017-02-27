@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic.base import TemplateView
 from django.contrib.auth import logout, login, authenticate
 from django.http import HttpResponse, HttpResponseRedirect
@@ -16,7 +17,7 @@ class ProductsView(TemplateView):
 				gets all ProductType labels to display to customers
 
 			def create_product(request):
-				takes the request sent from form via the registered 
+				takes the request sent from form via the registered
 				customer and creates the product to sell based on
 				whether the user created a category or used a predefined one
 
@@ -24,7 +25,7 @@ class ProductsView(TemplateView):
 			@rtwhitfield84
 	'''
 
-	template_name = 'products.html'
+	template_name = 'categories.html'
 
 	def get(self, request):
 		self.category_list = ProductType.objects.all()
@@ -37,7 +38,7 @@ def create_product(request):
 	if 'label' in data:
 
 		product_category = ProductType.objects.create(label=data['label'])
-		
+
 		Product.objects.create(
 			name=data['product_name'],
 			description=data['description'],
@@ -47,11 +48,11 @@ def create_product(request):
 			seller=Customer.objects.get(user=request.user)
 		)
 
-		return HttpResponseRedirect(redirect_to='/products')
+		return HttpResponseRedirect(redirect_to='/categories')
 
 	else:
 
-		
+
 		Product.objects.create(
 			name=data['product_name'],
 			description=data['description'],
@@ -61,4 +62,8 @@ def create_product(request):
 			seller=Customer.objects.get(user=request.user)
 		)
 
-		return HttpResponseRedirect(redirect_to='/products')
+		return HttpResponseRedirect(redirect_to='/categories')
+
+
+
+

@@ -26,7 +26,7 @@ class OrderDetailView(TemplateView):
         # declaring variables which will be used for template data-binding
         self.line_items = []
         self.order_total = 0
-        self.payment_types = []
+        self.payment_options = []
         self.active_order = None
         try:
             # processes requests coming from the User Interface
@@ -35,7 +35,7 @@ class OrderDetailView(TemplateView):
 
             try:
                 # self.payment_types = PaymentType(customer_id=customer.id)
-                self.payment_types = PaymentType.objects.filter(customer_id=customer.id)
+                self.payment_options = PaymentType.objects.filter(customer_id=customer.id)
             except PaymentType.DoesNotExist:
                 pass
 
@@ -96,9 +96,9 @@ class OrderDetailView(TemplateView):
             self.template_name,
             {
                 'line_items': self.line_items,
-                'order_total': self.order_total
-                # 'payment_options': self.payment_options,
-                # 'customer_order_id': self.active_order.id
+                'order_total': self.order_total,
+                'payment_options': self.payment_options,
+                'customer_order_id': self.active_order.id
             }
         )
 

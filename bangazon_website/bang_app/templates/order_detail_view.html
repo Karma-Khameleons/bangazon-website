@@ -11,7 +11,7 @@
     {# beginning of checkout form #}
     <form action="{%url 'bang_app:close_order' %}" method="post">
         {% csrf_token %}
-        <input type="text" name="customer_order_id" value="{{customer_order_id}}">
+        <input class="hidden" type="text" name="customer_order_id" value="{{customer_order_id}}">
 
         <div id="line_items_summary">
             <h3>Items in Your Current Order:</h3>
@@ -28,7 +28,7 @@
                 <h3>Select a payment type:</h3>
 
                 {% for option in payment_options %}
-                    {# <input type="radio" name="payment_type_id" value="{{option.id}}" checked>{{option.card_type}}<br> #}
+                    <input type="radio" name="payment_type_id" value="{{option.id}}" checked>{{option.card_type}}<br>
                 {% endfor %}
                 
             {% else %}

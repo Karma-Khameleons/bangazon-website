@@ -100,5 +100,5 @@ class TestLineItem(TestCase):
 		# In order to see what's being returned, print response.context
 		response = self.client.get(reverse('bang_app:list_line_items'))
 
-		self.assertIn("{'line_items': <QuerySet [<Product: Lefty Scissors 3.99 For the lefties>]>, 'current_order': <CustomerOrder: Order for customer Suzy>}", str(response.context))
+		self.assertIn("{'line_items': <QuerySet [<Product: Lefty Scissors 3.99 For the lefties 3 School Supplies>]>, 'current_order': <CustomerOrder: Order for customer Suzy>}", str(response.context))
 

@@ -4,6 +4,6 @@
 
 
 {% for p in product_category_list %}
-  <li>{{p.name}}</li>
+  <li><a href="{% url 'bang_app:product_detail' p.id %}">{{p.name}}</li>
 {% endfor %}
 {% endblock %}

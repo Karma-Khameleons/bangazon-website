@@ -29,7 +29,7 @@ urlpatterns = [
     url(r'^categories/$', views.products_view.ProductsView.as_view(), name="categories"),
 
     #Product Categories
-    url(r'product_detail/(?P<id>)/$', views.product_detail_view.get_product_detail, name="product_detail"),
+    url(r'product_detail/(?P<id>\d+)/$', views.product_detail_view.get_product_detail, name="product_detail"),
 
 
     # Payment Types

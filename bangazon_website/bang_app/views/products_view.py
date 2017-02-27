@@ -48,7 +48,7 @@ def create_product(request):
 			seller=Customer.objects.get(user=request.user)
 		)
 
-		return HttpResponseRedirect(redirect_to='/products')
+		return HttpResponseRedirect(redirect_to='/categories')
 
 	else:
 
@@ -62,7 +62,7 @@ def create_product(request):
 			seller=Customer.objects.get(user=request.user)
 		)
 
-		return HttpResponseRedirect(redirect_to='/products')
+		return HttpResponseRedirect(redirect_to='/categories')
 
 
 

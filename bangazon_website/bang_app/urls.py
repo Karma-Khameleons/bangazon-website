@@ -38,4 +38,7 @@ urlpatterns = [
     url(r'^payment_type/', views.create_payment_type_view.CreatePaymentTypeView.as_view(), name='create_payment_type_view'),
     url(r'^create_payment_type/', views.create_payment_type_view.create_payment_type, name='create_payment_type'),
 
+    # Order
+    url(r'^list_line_items/', views.line_item.LineItemView.as_view(), name='list_line_items'),
+
 ]

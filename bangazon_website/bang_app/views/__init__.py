@@ -8,4 +8,5 @@ from .product_detail_view import ProductDetailView
 from .create_payment_type_view import CreatePaymentTypeView
 from .product_list_view import ProductListView
 from .order_success_view import OrderSuccess
+from .line_item import LineItemView
 

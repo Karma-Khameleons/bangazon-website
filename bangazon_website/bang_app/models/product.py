@@ -24,4 +24,4 @@ class Product(models.Model):
 		verbose_name_plural = 'Products'
 	
 	def __str__(self):
-		return '{} {} {}'.format(self.name, self.price, self.description)
+		return '{} {} {} {} {}'.format(self.name, self.price, self.description, self.quantity, self.product_type)

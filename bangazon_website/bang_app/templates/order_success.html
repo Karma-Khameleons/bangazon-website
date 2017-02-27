@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+{%block navbar%}
+{% endblock %}
+
+{% block content %}
+<div class="col-md-8 col-md-offset-3">
+	<h2>Your order is complete. Thank you! </h2>
+	<p>You can continue <a href="{% url 'bang_app:products' %}"> shopping</a> or <a href="{% url 
+	'bang_app:logout %}"> log out</a>.</p>
+</div>
+{% endblock %}

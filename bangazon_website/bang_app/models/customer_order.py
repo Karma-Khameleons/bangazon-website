@@ -9,12 +9,11 @@ class CustomerOrder(models.Model):
 
     Author: Sam Phillips
     """
-
+    
     active_order = models.IntegerField()
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     payment_type = models.ForeignKey(PaymentType, on_delete=models.CASCADE)
-    line_items = models.ManyToManyField(Product)
-    # line_items = models.ManyToManyField(Product, db_table="LineItem", related_name='customer_orders')
+    line_items = models.ManyToManyField(Product, db_table="LineItem")
 
     def __str__(self):
         return "Order for customer {}".format(self.customer)

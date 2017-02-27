@@ -7,6 +7,8 @@ app_name = 'bang_app'
 urlpatterns = [
     url(r'^$', views.index_view.IndexView.as_view(), name='index'),
     url(r'^success/', views.Success.as_view(), name='success'),
+    url(r'^order_success/', views.order_success_view.OrderSuccess.as_view(), name='order_success'),
+
 
     # Login
     url(r'^customer_login/', views.login_view.login_customer, name='customer_login'),

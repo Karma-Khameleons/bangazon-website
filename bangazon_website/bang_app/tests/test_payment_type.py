@@ -1,5 +1,4 @@
 from django.test import TestCase 
-import sys
 from bang_app.models import PaymentType
 
 class TestPaymentTypeCreation(TestCase):

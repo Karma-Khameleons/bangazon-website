@@ -47,7 +47,7 @@ class TestCustomerOrderCreation(TestCase):
 
         ball = Product(None, "ball", 1.99, "It's round", 3, 1, 1)
         ball.save()
-        
+
         self.testing_product = Product.objects.get(pk=1)
 
         self.new_customer_order.line_items.add(self.testing_product)
@@ -60,7 +60,8 @@ class TestCustomerOrderCreation(TestCase):
         self.assertEqual(self.new_customer_order.active_order, 1)
         self.assertEqual(self.new_customer_order.customer, self.suzy)
         self.assertEqual(self.new_customer_order.payment_type, self.payment)
-        self.assertEqual(self.new_customer_order.line_items, [])
+
+        self.assertEqual(self.new_customer_order.line_items.all()[0], Product.objects.get(pk=1))
 
 
 

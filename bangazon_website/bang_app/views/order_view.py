@@ -27,14 +27,20 @@ class OrderDetailView(TemplateView):
 
         # this will need to be reconfigured to use request.user as the 
         # customer query value
+        # active_order = None
+        self.line_items = []
         try:
-            active_order = CustomerOrder.objects.get(customer=request.user, active_order=1)
-        except TypeError as e:
+            customer = Customer.objects.get(user=request.user)
+            active_order = CustomerOrder.objects.get(customer=customer, active_order=1)
+            self.line_items = active_order.line_items.all()
+        except TypeError:
             # Catch for requests coming from the tests module
             active_order = CustomerOrder.objects.get(customer=Customer.objects.get(pk=1), active_order=1)
+            self.line_items = active_order.line_items.all()
+        except CustomerOrder.DoesNotExist:
+            pass
 
 
-        self.line_items = active_order.line_items.all()
 
         return render(
             request,

@@ -4,12 +4,23 @@
 
 {% block content %}
 <div class="col-md-8 col-md-offset-3">
-    <h3>Your Current Order:</h3>
-    <div>
-        {% for product in line_items %}
-        <span>{{product.name}}</span><span>{{product.price}}</span>
-        {% endfor %}
-        
-    </div>
+
+{# checks to see if the user has a currently active order. If they do, the order detail/checkout page is rendered with all appropriate affordances#}
+    {% if line_items %}
+        <div id="line_items_summary">
+            <h3>Items in Your Current Order:</h3>
+            <div>
+                {% for product in line_items %}
+                <span>{{product.name}}</span><span>{{product.price}}</span>
+                {% endfor %}
+            </div>
+        </div>
+
+
+{# if the user does not have an active order, they are provided a link to the home page #}
+    {% else %}
+        <h3>You have no items in your current order</h3>
+        <p>Click <a href="{% url 'bang_app:products' %}">here</a> to shop for products</p>
+    {% endif %}
 </div>
 {% endblock %}

@@ -24,7 +24,7 @@ class TestAddProduct(TestCase):
     def test_customer_product_creation_routes_to_products(self):
         
         response = self.client.get(reverse('bang_app:products'))
-        self.assertContains(response, "Placeholder")
+        self.assertContains(response, "Products")
         self.assertEqual(response.status_code, 200)
 
     def test_customer_can_create_product(self):

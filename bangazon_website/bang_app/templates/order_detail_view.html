@@ -42,7 +42,7 @@
 {# if the user does not have an active order, they are provided a link to the home page #}
     {% else %}
         <h3>You have no items in your current order</h3>
-        <p>Click <a href="{% url 'bang_app:products' %}">here</a> to shop for products</p>
+        <p>Click <a href="{% url 'bang_app:categories' %}">here</a> to shop for products</p>
     {% endif %}
 </div>
 {% endblock %}

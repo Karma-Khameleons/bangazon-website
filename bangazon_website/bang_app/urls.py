@@ -24,14 +24,13 @@ urlpatterns = [
     # Products
     url(r'^create_product/', views.products_view.create_product, name='create_product'),
     url(r'^new_product/', views.new_product_view.NewProductView.as_view(), name='new_product'),
-    url(r'^products/', views.products_view.ProductsView.as_view(), name='products'),
-    url(r'^product_detail/', views.product_detail_view.ProductDetailView.as_view(), name='product_detail'),
+    url(r'^product_list/(?P<id>\d+)/$', views.product_list_view.get_product_category_list, name='product_list'),
 
-    url(r'^categories/$', views.product_list_view.ProductListView.as_view(), name="product_list_view"),
+    url(r'^categories/$', views.products_view.ProductsView.as_view(), name="categories"),
 
     #Product Categories
-    # url(r'products/(?P<id>)/$', views.product_detail_view.ProductDetailView.as_view(), name="product_category")
-  
+    url(r'product_detail/(?P<id>\d+)/$', views.product_detail_view.get_product_detail, name="product_detail"),
+
 
     # Payment Types
 
@@ -40,6 +39,7 @@ urlpatterns = [
 
 
     # Order
+    url(r'^list_line_items/', views.line_item.LineItemView.as_view(), name='list_line_items'),
     url(r'^order/$', views.order_view.OrderDetailView.as_view(), name="order_detail_view"),
     url(r'^close_order/$', views.order_view.close_order, name="close_order"),
 ]

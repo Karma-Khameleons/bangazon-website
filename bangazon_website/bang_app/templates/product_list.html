@@ -1,6 +1,9 @@
 {% extends 'index.html' %}
 
-{% block content %}
-<h1>Placeholder</h1>
-	
-{% endblock content %}
+{% block content%}
+
+
+{% for p in product_category_list %}
+  <li><a href="{% url 'bang_app:product_detail' p.id %}">{{p.name}}</li>
+{% endfor %}
+{% endblock %}

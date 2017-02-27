@@ -1,5 +1,5 @@
 from django.test import TestCase 
-from bang_app.models import CustomerOrder, Customer, PaymentType
+from bang_app.models import CustomerOrder, Customer, PaymentType, Product
 from django.contrib.auth.models import User
 
 class TestCustomerOrderCreation(TestCase):
@@ -17,6 +17,7 @@ class TestCustomerOrderCreation(TestCase):
             username = "suzybishop",
             password="password1234"
         )
+        self.user.save()
 
         self.suzy = Customer(
             user = self.user,
@@ -25,6 +26,7 @@ class TestCustomerOrderCreation(TestCase):
             zip_code = "52801",
             street_address = "300 Summer's End" 
         )
+        self.suzy.save()
 
         self.payment = PaymentType(
             card_type = "Amex",
@@ -34,12 +36,21 @@ class TestCustomerOrderCreation(TestCase):
             billing_name = "Suzy Bishop",
             customer = self.suzy
         )
+        self.payment.save()
 
         self.new_customer_order = CustomerOrder(
             active_order=1, 
             customer=self.suzy, 
             payment_type=self.payment
         )
+        self.new_customer_order.save()
+
+        ball = Product(None, "ball", 1.99, "It's round", 3, 1, 1)
+        ball.save()
+        
+        self.testing_product = Product.objects.get(pk=1)
+
+        self.new_customer_order.line_items.add(self.testing_product)
 
 
     def test_new_order_is_of_class_CustomerOrder(self):

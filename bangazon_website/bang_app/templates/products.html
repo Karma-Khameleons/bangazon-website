@@ -6,7 +6,7 @@
 		{% for category in category_list %}
 		<div class="col-md-8">
 		<label>{{category.label}}</label><br>
-			<a href="#">{{ category.label }}</a>
+			<a href="{% url 'bang_app:product_detail' %}">{{ category.label }}</a>
 		</div>
 		{% endfor %}
 </div>

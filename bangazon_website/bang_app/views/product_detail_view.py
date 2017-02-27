@@ -17,5 +17,5 @@ class ProductDetailView(ListView):
 
 
   def get_product_details(self, request):
-    self.product_list = Product.objects.all()
+    self.product_detail = Product.objects.all()
     return render(request, self.template_name, {'product_detail': self.product_detail})

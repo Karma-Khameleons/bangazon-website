@@ -5,8 +5,7 @@
 	<h1>Products by Category</h1>
 		{% for category in category_list %}
 		<div class="col-md-8">
-		<label>{{category.label}}</label><br>
-			<a href="{% url 'bang_app:product_detail' %}">{{ category.label }}</a>
+			<a href="{% url 'bang_app:product_list' id=category.id %}">{{ category.label }}</a>
 		</div>
 		{% endfor %}
 </div>

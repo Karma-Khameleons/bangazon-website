@@ -38,4 +38,8 @@ urlpatterns = [
     url(r'^payment_type/', views.create_payment_type_view.CreatePaymentTypeView.as_view(), name='create_payment_type_view'),
     url(r'^create_payment_type/', views.create_payment_type_view.create_payment_type, name='create_payment_type'),
 
+
+    # Order
+    url(r'^order/$', views.order_view.OrderDetailView.as_view(), name="order_detail_view"),
+    url(r'^close_order/$', views.order_view.close_order, name="close_order"),
 ]

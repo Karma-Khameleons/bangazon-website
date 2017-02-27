@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+{%block navbar%}
+{% endblock %}
+
+{% block content %}
+<div class="col-md-8 col-md-offset-3">
+    <h3>Your Current Order:</h3>
+    <div>
+        {% for product in line_items %}
+        <span>{{product.name}}</span><span>{{product.price}}</span>
+        {% endfor %}
+        
+    </div>
+</div>
+{% endblock %}

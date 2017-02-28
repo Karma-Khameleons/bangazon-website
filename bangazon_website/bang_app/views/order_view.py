@@ -87,7 +87,7 @@ def close_order(request):
     order.active_order=0
     order.save()
 
-    return HttpResponseRedirect(redirect_to='/')
+    return HttpResponseRedirect(redirect_to='/order_success')
 
 
 

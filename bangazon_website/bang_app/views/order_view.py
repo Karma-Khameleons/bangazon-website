@@ -14,8 +14,6 @@ class OrderDetailView(TemplateView):
     """
     template_name='order_detail_view.html'
 
-    
-
     def get(self, request):
         """
         Overwriting the OrderDetailView's "get" method to bind line_item 
@@ -28,21 +26,17 @@ class OrderDetailView(TemplateView):
         self.order_total = 0
         self.payment_options = []
         self.active_order = None
+
+        # collects all line_items and payment type options for the current user's active order
         try:
             # processes requests coming from the User Interface
-            # collects all line_items for the current user's active order
             customer = Customer.objects.get(user=request.user)
-
             try:
-                # self.payment_types = PaymentType(customer_id=customer.id)
                 self.payment_options = PaymentType.objects.filter(customer_id=customer.id)
             except PaymentType.DoesNotExist:
                 pass
 
             self.active_order = CustomerOrder.objects.get(customer=customer, active_order=1)
-            print("ORDER")
-            print(self.active_order)
-            # self.active_order = CustomerOrder.objects.get(customer=customer, active_order=1)
             self.line_items = self.active_order.line_items.all()
 
             # sums together the order total
@@ -55,14 +49,11 @@ class OrderDetailView(TemplateView):
             self.line_items = self.active_order.line_items.all()
 
         except CustomerOrder.DoesNotExist:
-            print("order does not exist")
+            # catch for requests from users with no currently active order
+            # creates a new order for the user
             self.active_order = CustomerOrder(active_order=1, customer=Customer.objects.get(user=request.user))
             self.active_order.save()
-            # catch for requests from users with no currently active order
             pass
-
-
-
 
         return render(
             request,
@@ -88,8 +79,3 @@ def close_order(request):
     order.save()
 
     return HttpResponseRedirect(redirect_to='/order_success')
-
-
-
-
-

@@ -1,9 +1,12 @@
 {% extends 'index.html' %}
 
 {% block content%}
-
-
-{% for p in product_category_list %}
-  <li><a href="{% url 'bang_app:product_detail' p.id %}">{{p.name}}</li>
-{% endfor %}
+<div class="col-md-8 col-md-offset-2">
+  <h1>List of Products in Category</h1>
+    {% for p in product_category_list %}
+    <div class="col-md-8">
+      <h3><a href="{% url 'bang_app:product_detail' p.id %}">{{p.name}}</a></h3>
+    </div>
+  {% endfor %}
+</div>
 {% endblock %}

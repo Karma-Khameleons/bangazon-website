@@ -62,5 +62,5 @@ def create_payment_type(request):
         customer=Customer.objects.get(user=request.user)
     )
 
-    return HttpResponseRedirect(redirect_to='/products')
+    return HttpResponseRedirect(redirect_to='/categories')
 

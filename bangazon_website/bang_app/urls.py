@@ -39,5 +39,4 @@ urlpatterns = [
 
     # Order
     url(r'^list_line_items/', views.line_item.LineItemView.as_view(), name='list_line_items'),
-
 ]

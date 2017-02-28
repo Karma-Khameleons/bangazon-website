@@ -102,3 +102,5 @@ class TestLineItem(TestCase):
 
 		self.assertIn("{'line_items': <QuerySet [<Product: Lefty Scissors 3.99 For the lefties 3 School Supplies>]>, 'current_order': <CustomerOrder: Order for customer Suzy>}", str(response.context))
 
+	
+

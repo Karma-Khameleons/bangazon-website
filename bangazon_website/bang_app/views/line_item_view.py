@@ -48,6 +48,8 @@ class LineItemView(TemplateView):
 		# current_order = CustomerOrder.objects.get(customer=1, active_order=1)
 		# print("***CURRENT ORDER****", current_order)
 
-		#order.product.add(product)
+		#add to order
+		#current_order.product.add(product)
+
 
 		return HttpResponse("Wahoo!")

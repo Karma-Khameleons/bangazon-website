@@ -91,7 +91,7 @@ class TestLineItem(TestCase):
 
 	
 	def test_line_item_should_redirect_to_success_view(self):
-		response = self.client.get(reverse('bang_app:products'))
+		response = self.client.get(reverse('bang_app:categories'))
 		self.assertTemplateUsed('success.html')
 		self.assertEqual(response.status_code, 200)
 

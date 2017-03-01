@@ -19,6 +19,8 @@ $('#cat-list').on('change', function() {
 	}
 });
 
+// event listener for presenting the payment type creation form on 
+// the order detail view
 $(".payment_type_option").on('click', function() {
     console.log("clicked");
     if (this.value === 'new') {

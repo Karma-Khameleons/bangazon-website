@@ -22,22 +22,11 @@ class ProductListView(TemplateView):
   
 template_name = "product_list.html"
 
-# def get(self, request):
-#   try:
-#     self.cart = CustomerOrder.objects.get(customer=request.user.customer)
-#     self.line_items = self.cart.line_items.all()
-#     self.total = 0
-#     for i in self.line_items:
-#       self.total +=1
-#     print("@@@@@@@@@@@@@@@@@@@@",self.cart)
-#   except CustomerOrder.DoesNotExist:
-#     self.total = 0
-#   return render(request, self.template_name, {'total': self.total})
 
 def get_product_category_list(request, id):
   product_category_list = Product.objects.filter(product_type_id=id) 
   try:
-    cart = CustomerOrder.objects.get(customer=request.user.customer)
+    cart = CustomerOrder.objects.get(customer=request.user.customer, active=1)
     line_items = cart.line_items.all()
     print("@@@@@@@@@@@@@", line_items)
     total = 0

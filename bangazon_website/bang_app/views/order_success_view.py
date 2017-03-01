@@ -1,4 +1,5 @@
 from django.views.generic.base import TemplateView
+from django.shortcuts import render
 from bang_app.models import Product, ProductType, CustomerOrder
 
 
@@ -12,7 +13,7 @@ class OrderSuccess(TemplateView):
 
 	def get(self, request):
 		try:
-			self.cart = CustomerOrder.objects.get(customer=request.user.customer)
+			self.cart = CustomerOrder.objects.get(customer=request.user.customer, active=1)
 			self.line_items = self.cart.line_items.all()
 			self.total = 0
 			for i in self.line_items:

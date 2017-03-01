@@ -31,7 +31,7 @@ class ProductsView(TemplateView):
 		self.category_list = ProductType.objects.all()
 
 		try:
-			self.cart = CustomerOrder.objects.get(customer=request.user.customer)
+			self.cart = CustomerOrder.objects.get(customer=request.user.customer, active=1)
 			self.line_items = self.cart.line_items.all()
 			# self.line_items = list(self.cart.line_items)
 			self.total = 0

@@ -24,9 +24,23 @@ class LineItemView(TemplateView):
 
 		# Get all of the line items for the current customer
 		all_line_items = self.current_order.line_items.all()
+
+		self.category_list = ProductType.objects.all()
+
+		try:
+		    self.cart = CustomerOrder.objects.get(customer=request.user.customer)
+		    self.line_items = self.cart.line_items.all()
+		    self.total = 0
+		    for i in self.line_items:
+		        self.total +=1
+		    print("@@@@@@@@@@@@@@@@@@@@",self.cart)
+		except CustomerOrder.DoesNotExist:
+		        self.total = 0
 			
 		# Return a request, page, and a dictionary with line items and current order
-		return render(request, 'success.html', {'line_items': all_line_items, 'current_order': self.current_order})
+		return render(request, 'success.html', {'line_items': all_line_items, 
+												'current_order': self.current_order,
+												'total': self.total})
 
 
 

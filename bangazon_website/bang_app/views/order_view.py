@@ -27,6 +27,18 @@ class OrderDetailView(TemplateView):
         self.payment_options = []
         self.active_order = None
 
+        try:
+            self.cart = CustomerOrder.objects.get(customer=request.user.customer)
+            self.line_items = self.cart.line_items.all()
+            # self.line_items = list(self.cart.line_items)
+            self.total = 0
+            for i in self.line_items:
+                self.total +=1
+            # self.total = Product.objects.filter()
+            print("@@@@@@@@@@@@@@@@@@@@",self.cart)
+        except CustomerOrder.DoesNotExist:
+                self.total = 0
+
         # collects all line_items and payment type options for the current user's active order
         try:
             # processes requests coming from the User Interface
@@ -62,7 +74,8 @@ class OrderDetailView(TemplateView):
                 'line_items': self.line_items,
                 'order_total': self.order_total,
                 'payment_options': self.payment_options,
-                'customer_order_id': self.active_order.id
+                'customer_order_id': self.active_order.id,
+                'total': self.total
             }
         )
 

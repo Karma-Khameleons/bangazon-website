@@ -5,13 +5,25 @@ from django.contrib.auth.models import User
 from django.contrib.auth import logout, login, authenticate
 from django.http import HttpResponse, HttpResponseRedirect
 
-from bang_app.models import Product, ProductType, Customer
+from bang_app.models import Product, ProductType, Customer,CustomerOrder
 from bang_app.views import login_view
 
 
 
 class Register(TemplateView):
     template_name = 'register.html'
+
+    def get(self, request):
+        try:
+            self.cart = CustomerOrder.objects.get(customer=request.user.customer)
+            self.line_items = self.cart.line_items.all()
+            self.total = 0
+            for i in self.line_items:
+                self.total +=1
+            print("@@@@@@@@@@@@@@@@@@@@",self.cart)
+        except CustomerOrder.DoesNotExist:
+            self.total = 0
+        return render(request, self.template_name, {'total': self.total})
 
 
 def register_customer(request):

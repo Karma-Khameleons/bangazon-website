@@ -6,8 +6,20 @@ from bang_app.models import Product, ProductType, Customer
 
 
 class ProductListView(TemplateView):
-	template_name = "product_list.html"
 
+  '''
+    Purpose-
+      This class provides the template for a customer to
+      select a category and view the list of products associated with that category
+
+    Methods-
+      get_product_category_list
+
+    Author:
+      @whitneycormack
+  '''
+
+template_name = "product_list.html"
 
 def get_product_category_list(request, id):
   product_category_list = Product.objects.filter(product_type_id=id)

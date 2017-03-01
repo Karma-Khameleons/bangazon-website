@@ -1,29 +1,26 @@
 {% extends 'index.html' %}
 
 {% block content %}
-<h1>this is the product detail view</h1>
 
- <ul>
+<div class="col-md-8 col-md-offset-2">
+  <h1>Product Details</h1>
+                    
 	{% for product in product_detail %}
   <h2>{{ product.name }}</h2>
 	<h3>Description: {{ product.description }}</h3>
-	<li>Category: {{ product.product_type }}
-	${{ product.price }}
-  </li>
-
-</ul>
-
-
-{% if user.is_authenticated %}
+  <h3>${{ product.price }}</h3>
+  <h4>Category: {{ product.product_type }}</h4>
 	
+  
+  {% if user.is_authenticated %}
 	<form class="" action="{% url 'bang_app:list_line_items' %}" method="post">
 	{% csrf_token %}
 		<input value= "{{ product.pk }}" name="product_pk" class="hidden">
-		<button type="submit">Add To Order</button>
+		<button type="submit" class="btn-danger">Add To Order</button>
 	</form>
 
-{% endif %}
-{% endfor %}
-
+  {% endif %}
+  {% endfor %}
+</div>
 
 {% endblock %}

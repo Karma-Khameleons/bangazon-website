@@ -25,22 +25,34 @@ class ProductDetailView(TemplateView):
   template_name = 'product_detail.html'
   model = models.Product
 
-  def get(self, request):
-    self.category_list = ProductType.objects.all()
-    try:
-      self.cart = CustomerOrder.objects.get(customer=request.user.customer)
-      self.line_items = self.cart.line_items.all()
-      self.total = 0
-      for i in self.line_items:
-        self.total +=1
-      print("@@@@@@@@@@@@@@@@@@@@",self.cart)
-    except CustomerOrder.DoesNotExist:
-      self.total = 0
-    return render(request, 'new_product.html', {'total': self.total})
+  # def get(self, request):
+  #   self.category_list = ProductType.objects.all()
+  #   try:
+  #     self.cart = CustomerOrder.objects.get(customer=request.user.customer)
+  #     self.line_items = self.cart.line_items.all()
+  #     self.total = 0
+  #     for i in self.line_items:
+  #       self.total +=1
+  #     print("@@@@@@@@@@@@@@@@@@@@",self.cart)
+  #   except CustomerOrder.DoesNotExist:
+  #     self.total = 0
+  #   return render(request, 'new_product.html', {'total': self.total})
 
 def get_product_detail(request, id):
   product_detail = Product.objects.filter(id=id)
-  return render(request, 'product_detail.html', {'product_detail': product_detail})
+  try:
+    cart = CustomerOrder.objects.get(customer=request.user.customer)
+    line_items = cart.line_items.all()
+    print("@@@@@@@@@@@@@", line_items)
+    total = 0
+    for i in line_items:
+      total += 1
+    print("@@@@@@@@@@@@@@@@@@@@",cart)
+  except CustomerOrder.DoesNotExist:
+    print("adfsaddas")
+    total = 0
+  return render(request, 'product_detail.html', {'product_detail': product_detail,
+                                                'total': total})
 
 
 

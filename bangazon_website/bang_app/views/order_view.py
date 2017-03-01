@@ -35,6 +35,8 @@ class OrderDetailView(TemplateView):
                 self.payment_options = PaymentType.objects.filter(customer_id=customer.id)
             except PaymentType.DoesNotExist:
                 pass
+            self.payment_options = list(self.payment_options)
+            self.payment_options.append({'id': 'new', 'card_type': 'create new payment type'})
 
             self.active_order = CustomerOrder.objects.get(customer=customer, active_order=1)
             self.line_items = self.active_order.line_items.all()
@@ -55,6 +57,8 @@ class OrderDetailView(TemplateView):
             self.active_order.save()
             pass
 
+
+
         return render(
             request,
             self.template_name,
@@ -74,8 +78,29 @@ def close_order(request):
     """
     data = request.POST 
     order = CustomerOrder.objects.get(id=data['customer_order_id'])
-    order.payment_type=PaymentType.objects.get(id=data['payment_type_id'])
+
+    # checks to see if the user is trying to create a new payment type for this order. If so, it creates that payment type and assigns it to the order. 
+    # Otherwise it assigns the pk of the selected payment type.
+    if data['payment_type_id'] == 'new':
+        new_payment_type = PaymentType.objects.create(
+        card_type=data['card_type'],
+        card_number=data['card_number'],
+        cvv=data['cvv'],
+        expiration_date=data['expiration_date'],
+        billing_name=data['billing_name'],
+        customer=Customer.objects.get(user=request.user)
+        )
+        new_payment_type.save()
+        order.payment_type = new_payment_type
+    else:
+        order.payment_type=PaymentType.objects.get(id=data['payment_type_id'])
+    # closes the order and updates it in the database
     order.active_order=0
     order.save()
 
     return HttpResponseRedirect(redirect_to='/order_success')
+
+
+
+
+

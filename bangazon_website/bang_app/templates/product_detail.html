@@ -16,6 +16,14 @@
 	 <form class="" action="{% url 'bang_app:list_line_items' %}" method="post">
 	{% csrf_token %}
 		<input value= "{{ product.pk }}" name="product_pk" class="hidden">
+        <select name="product_quantity">
+            {# temporarily allowing customers to only select 1 through 4 #}
+            {# must later reconfigure options to correlate with product listing quantity #}
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
 		<button type="submit" class="btn-danger">Add To Order</button>
 	</form>
 

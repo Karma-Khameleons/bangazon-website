@@ -13,7 +13,7 @@ class CustomerOrder(models.Model):
     active_order = models.IntegerField()
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     payment_type = models.ForeignKey(PaymentType, null=True, on_delete=models.CASCADE)
-    line_items = models.ManyToManyField(Product)
+    line_items = models.ManyToManyField(Product, through='LineItem')
 
     def __str__(self):
         return "Order for customer {}".format(self.customer)

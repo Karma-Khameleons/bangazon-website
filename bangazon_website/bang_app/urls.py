@@ -39,7 +39,7 @@ urlpatterns = [
 
 
     # Order
-    url(r'^list_line_items/', views.line_item.LineItemView.as_view(), name='list_line_items'),
+    url(r'^list_line_items/', views.line_item_view.LineItemView.as_view(), name='list_line_items'),
     url(r'^order/$', views.order_view.OrderDetailView.as_view(), name="order_detail_view"),
     url(r'^close_order/$', views.order_view.close_order, name="close_order"),
 ]

@@ -12,7 +12,7 @@
 	<ul class="nav nav-pills">
 	{% if user.is_authenticated %}
 		<li role="presentation"><a href="{% url 'bang_app:categories' %}">Products</a></li>
-		<li role="presentation"><a href="#">Shopping Cart</a></li>
+		<li role="presentation"><a href="#">Shopping Cart Total {{ total }}</a></li>
 		<li role="presentation"><a href="{% url 'bang_app:new_product' %}">Sell an Item</a></li>
 		<li role="presentation"><a href="#">Profile</a></li>
 		<li role="presentation"><a href="{% url 'bang_app:order_detail_view' %}">Cart</a></li>

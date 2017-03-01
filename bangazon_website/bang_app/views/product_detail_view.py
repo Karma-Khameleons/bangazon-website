@@ -26,7 +26,6 @@ class ProductDetailView(TemplateView):
   model = models.Product
 
 def get_product_detail(request, id):
-  print(request)
   product_detail = Product.objects.filter(id=id)
   return render(request, 'product_detail.html', {'product_detail': product_detail})
 

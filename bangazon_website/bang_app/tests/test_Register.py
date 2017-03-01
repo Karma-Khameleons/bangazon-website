@@ -21,9 +21,9 @@ class TestRegister(TestCase):
 
 
 	def test_register_should_redirect_to_products(self):
-		response = self.client.get(reverse('bang_app:products'))
+		response = self.client.get(reverse('bang_app:categories'))
 		# response: <HttpResponse status_code=200, "text/html; charset=utf-8">
-		self.assertTemplateUsed('products.html')
+		self.assertTemplateUsed('categories.html')
 		self.assertEqual(response.status_code, 200)
 
 

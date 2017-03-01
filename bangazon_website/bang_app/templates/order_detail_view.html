@@ -32,7 +32,8 @@
                 {% endfor %}
                 
             {% else %}
-                <h4>You have no available payment options. Create a new one</h4>
+                <h4>You have no available payment options. Click <a href="{% url 'bang_app:create_payment_type_view' %}
+                ">here</a> to create a new one</h4>
             {% endif %}
         </div>
 

@@ -1,21 +1,23 @@
 {% extends 'index.html' %}
 
 {% block content %}
-<div class="col-md-8 col-md-offset-2">
-  <h1>Create a new Payment Type</h1>
-</div>
+<div class="row">
+  <div class="col-md-8 col-md-offset-4">
+    <h1>Enter your payment details: </h1>
+  </div>
 
-{# form to create a new Payment Type. Grabs the user's csrf token to assign the Payment Type to their customer instance #}
-<div class="input-group">
-  <form class="" action="{% url 'bang_app:create_payment_type' %}" method="post">
-    {% csrf_token %}
-    <input type="text" class="form-control" name="card_type" value="" placeholder="Enter Card Type (i.e. Visa)">
-    <input type="text" class="form-control" name="card_number" value="" placeholder="Enter Credit Card Number">
-    <input type="text" class="form-control" name="cvv" value="" placeholder="Enter 3-digit Security Code">
-    <input type="text" class="form-control" name="expiration_date" value="" placeholder="Enter Expiration Date">
-    <input type="text" class="form-control" name="billing_name" value="" placeholder="Enter Name on Card">
-  <button type="submit">Create New Payment Type</button>
-  </form>
+  {# form to create a new Payment Type. Grabs the user's csrf token to assign the Payment Type to their customer instance #}
+  <div class="input-group col-md-6 col-md-offset-3">
+    <form class="" action="{% url 'bang_app:create_payment_type' %}" method="post">
+      {% csrf_token %}
+      <input type="text" class="form-control" name="card_type" value="" placeholder="Enter Card Type (i.e. Visa)">
+      <input type="text" class="form-control" name="card_number" value="" placeholder="Enter Credit Card Number">
+      <input type="text" class="form-control" name="cvv" value="" placeholder="Enter 3-digit Security Code">
+      <input type="text" class="form-control" name="expiration_date" value="" placeholder="Enter Expiration Date">
+      <input type="text" class="form-control" name="billing_name" value="" placeholder="Enter Name on Card">
+      <button class="btn btn-danger" type="submit">Save Details</button>
+    </form>
+  </div>
 </div>
 
 {% endblock %}

@@ -29,7 +29,7 @@ class ProductDetailView(TemplateView):
 def get_product_detail(request, id):
   product_detail = Product.objects.filter(id=id)
   try:
-    cart = CustomerOrder.objects.get(customer=request.user.customer, active=1)
+    cart = CustomerOrder.objects.get(customer=request.user.customer, active_order=1)
     line_items = cart.line_items.all()
     print("@@@@@@@@@@@@@", line_items)
     total = 0

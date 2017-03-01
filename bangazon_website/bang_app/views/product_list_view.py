@@ -26,7 +26,7 @@ template_name = "product_list.html"
 def get_product_category_list(request, id):
   product_category_list = Product.objects.filter(product_type_id=id) 
   try:
-    cart = CustomerOrder.objects.get(customer=request.user.customer, active=1)
+    cart = CustomerOrder.objects.get(customer=request.user.customer, active_order=1)
     line_items = cart.line_items.all()
     print("@@@@@@@@@@@@@", line_items)
     total = 0

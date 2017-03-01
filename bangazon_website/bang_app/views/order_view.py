@@ -28,7 +28,7 @@ class OrderDetailView(TemplateView):
         self.active_order = None
 
         try:
-            self.cart = CustomerOrder.objects.get(customer=request.user.customer, active=1)
+            self.cart = CustomerOrder.objects.get(customer=request.user.customer, active_order=1)
             self.line_items = self.cart.line_items.all()
             # self.line_items = list(self.cart.line_items)
             self.total = 0

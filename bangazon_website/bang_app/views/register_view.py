@@ -5,13 +5,14 @@ from django.contrib.auth.models import User
 from django.contrib.auth import logout, login, authenticate
 from django.http import HttpResponse, HttpResponseRedirect
 
-from bang_app.models import Product, ProductType, Customer
+from bang_app.models import Product, ProductType, Customer,CustomerOrder
 from bang_app.views import login_view
 
 
 
 class Register(TemplateView):
     template_name = 'register.html'
+
 
 
 def register_customer(request):

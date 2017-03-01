@@ -5,10 +5,24 @@ from django.contrib.auth.models import User
 from django.contrib.auth import logout, login, authenticate
 from django.http import HttpResponse, HttpResponseRedirect
 from bang_app.models import PaymentType
-from bang_app.models import Customer
+from bang_app.models import Customer, CustomerOrder,ProductType
 
 class CreatePaymentTypeView(TemplateView):
     template_name = 'create_payment_type.html'
+
+    def get(self, request):
+        self.category_list = ProductType.objects.all()
+
+        try:
+            self.cart = CustomerOrder.objects.get(customer=request.user.customer, active_order=1)
+            self.line_items = self.cart.line_items.all()
+            self.total = 0
+            for i in self.line_items:
+                self.total +=1
+            print("@@@@@@@@@@@@@@@@@@@@",self.cart)
+        except CustomerOrder.DoesNotExist:
+                self.total = 0
+        return render(request, self.template_name, {'total': self.total})
 
 def create_payment_type(request):
     data = request.POST
@@ -20,7 +34,11 @@ def create_payment_type(request):
     Author: Sam Phillips
     """
 
-    # determines whether or not the request is coming from the tests module. If so, it creates a customer and assigns it to the post request's "customer" attribute. If instead the request is coming from a user, it uses csrf magic to assign their customer instance as the "customer" attribute
+    # determines whether or not the request is coming from the tests module. 
+    # If so, it creates a customer and assigns it to the post request's "customer" attribute. 
+    # If instead the request is coming from a user, 
+    # it uses csrf magic to assign their customer instance as the "customer" attribute
+    
     try:
         # will fail if the request isn't coming from the tests module
         decider = data["customer_pk_from_test"]

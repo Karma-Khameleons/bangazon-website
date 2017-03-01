@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic.base import TemplateView
 from django.contrib.auth import logout, login, authenticate
 from django.http import HttpResponse, HttpResponseRedirect
-from bang_app.models import Product, ProductType, Customer
+from bang_app.models import Product, ProductType, Customer, CustomerOrder
 
 
 class ProductsView(TemplateView):
@@ -29,7 +29,20 @@ class ProductsView(TemplateView):
 
 	def get(self, request):
 		self.category_list = ProductType.objects.all()
-		return render(request, self.template_name, {'category_list': self.category_list})
+
+		try:
+			self.cart = CustomerOrder.objects.get(customer=request.user.customer, active_order=1)
+			self.line_items = self.cart.line_items.all()
+			# self.line_items = list(self.cart.line_items)
+			self.total = 0
+			for i in self.line_items:
+				self.total +=1
+			# self.total = Product.objects.filter()
+			print("@@@@@@@@@@@@@@@@@@@@",self.cart)
+		except CustomerOrder.DoesNotExist:
+				self.total = 0
+		return render(request, self.template_name, {'category_list': self.category_list,
+													'total': self.total})
 
 def create_product(request):
 

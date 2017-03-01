@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth import logout, login, authenticate
 from django.http import HttpResponse, HttpResponseRedirect
-from bang_app.models import Customer, Product, ProductType
+from bang_app.models import Customer, Product, ProductType, CustomerOrder
 from bang_app import models
 
 class ProductDetailView(TemplateView):
@@ -25,9 +25,22 @@ class ProductDetailView(TemplateView):
   template_name = 'product_detail.html'
   model = models.Product
 
+
 def get_product_detail(request, id):
   product_detail = Product.objects.filter(id=id)
-  return render(request, 'product_detail.html', {'product_detail': product_detail})
+  try:
+    cart = CustomerOrder.objects.get(customer=request.user.customer, active_order=1)
+    line_items = cart.line_items.all()
+    print("@@@@@@@@@@@@@", line_items)
+    total = 0
+    for i in line_items:
+      total += 1
+    print("@@@@@@@@@@@@@@@@@@@@",cart)
+  except CustomerOrder.DoesNotExist:
+    print("adfsaddas")
+    total = 0
+  return render(request, 'product_detail.html', {'product_detail': product_detail,
+                                                'total': total})
 
 
 

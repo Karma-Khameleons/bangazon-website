@@ -35,9 +35,19 @@ class OrderDetailView(TemplateView):
                 self.payment_options = PaymentType.objects.filter(customer_id=customer.id)
             except PaymentType.DoesNotExist:
                 pass
+            self.payment_options = list(self.payment_options)
+            self.payment_options.append({'id': 'new', 'card_type': 'create new payment type'})
+            
+        # self.line_items = list(self.line_items)
+        # print("********line items********")
+        # print(self.line_items[0])
 
             self.active_order = CustomerOrder.objects.get(customer=customer, active_order=1)
             self.line_items = self.active_order.line_items.all()
+            # self.line_items = list(self.line_items)
+            # print("********line items********")
+            # print(self.line_items[0])
+            # self.line_items.append({'id': 'new', 'card_type': 'create new payment type', 'price': ''})
 
             # sums together the order total
             for item in self.line_items:
@@ -54,6 +64,8 @@ class OrderDetailView(TemplateView):
             self.active_order = CustomerOrder(active_order=1, customer=Customer.objects.get(user=request.user))
             self.active_order.save()
             pass
+
+
 
         return render(
             request,

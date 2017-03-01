@@ -18,3 +18,12 @@ $('#cat-list').on('change', function() {
 		$('#cats').addClass('hidden');
 	}
 });
+
+$(".payment_type_option").on('click', function() {
+    console.log("clicked");
+    if (this.value === 'new') {
+        $("#order_view_payment_form").removeClass('hidden')
+    } else {
+        $("#order_view_payment_form").addClass('hidden')
+    }
+});

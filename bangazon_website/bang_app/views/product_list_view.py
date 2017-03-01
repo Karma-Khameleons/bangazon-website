@@ -18,7 +18,8 @@ class ProductListView(TemplateView):
     Author:
       @whitneycormack
   '''
-
+  pass
+  
 template_name = "product_list.html"
 
 def get_product_category_list(request, id):

@@ -46,11 +46,11 @@ class ProductsView(TemplateView):
 def create_product(request):
 
 	data = request.POST
-	label = data['label']
+	cat_list = data['category_list']
 
-	if label != '':
+	if cat_list == 'Select Category':
 
-		product_category = ProductType.objects.create(label)
+		product_category = ProductType.objects.create(label=data['label'])
 
 		Product.objects.create(
 			name=data['product_name'],

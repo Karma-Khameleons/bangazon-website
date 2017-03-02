@@ -36,6 +36,8 @@ def get_product_category_list(request, id):
   except CustomerOrder.DoesNotExist:
     print("adfsaddas")
     total = 0
+  except AttributeError:        
+    total = 0
   return render(request, 'product_list.html', {'product_category_list': product_category_list, 
                                                 'total': total})
 

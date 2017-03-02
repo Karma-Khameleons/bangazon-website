@@ -27,20 +27,33 @@ class ProductDetailView(TemplateView):
 
 
 def get_product_detail(request, id):
-  product_detail = Product.objects.filter(id=id)
-  try:
-    cart = CustomerOrder.objects.get(customer=request.user.customer, active_order=1)
-    line_items = cart.line_items.all()
-    print("@@@@@@@@@@@@@", line_items)
-    total = 0
-    for i in line_items:
-      total += 1
-    print("@@@@@@@@@@@@@@@@@@@@",cart)
-  except CustomerOrder.DoesNotExist:
-    print("adfsaddas")
-    total = 0
-  return render(request, 'product_detail.html', {'product_detail': product_detail,
-                                                'total': total})
+    product_detail = Product.objects.filter(id=id)
+    try:
+        cart = CustomerOrder.objects.get(customer=request.user.customer, active_order=1)
+        line_items = cart.line_items.all()
+        print("@@@@@@@@@@@@@", line_items)
+        total = 0
+        for i in line_items:
+          total += 1
+        print("@@@@@@@@@@@@@@@@@@@@",cart)
+    except CustomerOrder.DoesNotExist:
+        print("adfsaddas")
+        total = 0
+
+    # create a list that can be looped over in the template to create the
+    # appropriate quantity options when buying a product
+    product_quantity = range(product_detail[0].quantity)
+    product_quantity = [x+1 for x in product_quantity]
+
+    return render(
+        request, 
+        'product_detail.html', 
+        {
+            'product_detail': product_detail,
+            'total': total,
+            'product_quantity': product_quantity
+        }
+    )
 
 
 

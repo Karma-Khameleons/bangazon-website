@@ -39,6 +39,8 @@ def get_product_detail(request, id):
     except CustomerOrder.DoesNotExist:
         print("adfsaddas")
         total = 0
+    except AttributeError:        
+        total = 0
 
     # create a list that can be looped over in the template to create the
     # appropriate quantity options when buying a product

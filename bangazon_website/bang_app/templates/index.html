@@ -8,21 +8,61 @@
 </head>
 <body>
 
-<nav>
-	<ul class="nav nav-pills">
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+	<!-- Brand and toggle get grouped for better mobile display -->
+	<div class="navbar-header">
+	  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		<span class="sr-only">Toggle navigation</span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+	  </button>
+	  <a class="navbar-brand" href="#">Bangazon</a>
+	</div>
+
 	{% if user.is_authenticated %}
-		<li role="presentation"><a href="{% url 'bang_app:categories' %}">Products</a></li>
-		<li role="presentation"><a href="{% url 'bang_app:new_product' %}">Sell an Item</a></li>
-		<li role="presentation"><a href="#">Profile</a></li>
-		<li role="presentation"><a href="{% url 'bang_app:order_detail_view' %}"><span class="glyphicon glyphicon-shopping-cart"></span> {{ total }}</a></li>
-        <li role="presentation"><a href="{% url 'bang_app:customer_logout' %}">Logout</a></li>
-	{% else %}
-		<li role="presentation"><a href="{% url 'bang_app:login' %}">Login</a></li>
-		<li role="presentation"><a href="{% url 'bang_app:register' %}">Register</a></li>
-		<li role="presentation"><a href="{% url 'bang_app:categories' %}">Products</a></li>
+	<!-- Menu Right Justified -->
+	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="#">Welcome, {{ user.first_name }} {{ user.last_name }}</a></li>
+			<li><a href="{% url 'bang_app:order_detail_view' %}"><span class="glyphicon glyphicon-shopping-cart"></span> {{ total }}</a></li>
+			<li><a href="{% url 'bang_app:customer_logout' %}">Logout</a></li>
+	 </ul>
+
+	<!-- Menu Left Justified -->
+		<ul class="nav navbar-nav">
+			<li><a href="{% url 'bang_app:categories' %}">Products</a></li>
+			<li><a href="{% url 'bang_app:new_product' %}">Sell</a></li>
+	  </ul>
+
+	  {% else %}
+	  <!-- Menu Left Justified -->
+	  <ul class="nav navbar-nav">
+			<li><a href="{% url 'bang_app:categories' %}">Products</a></li>
+	  </ul>
+
+	  <!-- Menu Right Justified -->
+	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="{% url 'bang_app:login' %}">Login</a></li>
+			<li><a href="{% url 'bang_app:register' %}">Register</a></li>
+	 </ul>
+
+
+
 	{% endif %}
-	</ul>
+	</div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
 </nav>
+
+
+
+
+
+
+
 
 {% block content %}
 <div class="col-md-8 col-md-offset-4">

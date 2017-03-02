@@ -40,6 +40,8 @@ def get_product_detail(request, id):
         print("adfsaddas")
         total = 0
 
+    # create a list that can be looped over in the template to create the
+    # appropriate quantity options when buying a product
     product_quantity = range(product_detail[0].quantity)
     product_quantity = [x+1 for x in product_quantity]
 

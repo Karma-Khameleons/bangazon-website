@@ -17,8 +17,6 @@
 	{% csrf_token %}
 		<input value= "{{ product.pk }}" name="product_pk" class="hidden">
         <select name="product_quantity">
-            {# temporarily allowing customers to only select 1 through 4 #}
-            {# must later reconfigure options to correlate with product listing quantity #}
             {% for x in product_quantity %}
                 <option value="{{ x }}">{{ x }}</option>
             {% endfor %}

@@ -63,7 +63,7 @@ class TestProductCategory(TestCase):
 		
 		#Testing that the returned category list includes test instance. 
 		response = self.client.get(reverse('bang_app:categories'))
-		self.assertIn( "{'category_list': <QuerySet [<ProductType: School Supplies>]>}", str(response.context))
+		self.assertIn( "{'category_list': <QuerySet [<ProductType: School Supplies>]>, 'total': 0}", str(response.context))
 		
 
 

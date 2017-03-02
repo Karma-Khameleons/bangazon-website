@@ -65,9 +65,15 @@
 
 
 {% block content %}
-<div class="col-md-8 col-md-offset-4">
-	<h1>Welcome to Bangazon</h1>
-</div>
+	<div class="col-md-8 col-md-offset-4">
+		<h1>Welcome to Bangazon</h1>
+		{% for c in categories %}
+			<h3>{{c.label}}</h3>
+			{% for p in c.products %}
+				<h4><a href="{#}">{{p.name}}</a></h4>
+			{%endfor%}
+		{%endfor%}
+	</div>
 {% endblock %}
 
 <script

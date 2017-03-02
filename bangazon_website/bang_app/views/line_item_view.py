@@ -62,8 +62,7 @@ class LineItemView(TemplateView):
             current_order = CustomerOrder.objects.create(customer=current_customer, active_order=1)
 
         # Add the product
-
-        # method to process quantity via the custom 'through' table
+        # processes quantity via the custom 'through' table
         # checks to see if the product already exists as a line item
         # on the user's current order. 
         # If it does, the already existing LineItem's quantity value 

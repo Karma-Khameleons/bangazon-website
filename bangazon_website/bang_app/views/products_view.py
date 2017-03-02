@@ -41,6 +41,8 @@ class ProductsView(TemplateView):
 			print("@@@@@@@@@@@@@@@@@@@@",self.cart)
 		except CustomerOrder.DoesNotExist:
 				self.total = 0
+		except AttributeError:		
+			self.total = 0
 		return render(request, self.template_name, {'category_list': self.category_list,
 													'total': self.total})
 

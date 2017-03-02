@@ -4,7 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth import logout, login, authenticate
 from django.http import HttpResponse, HttpResponseRedirect
-from bang_app.models import PaymentType, Customer, Product, CustomerOrder
+from bang_app.models import PaymentType, Customer, Product, CustomerOrder, LineItem
 
 class OrderDetailView(TemplateView):
     """
@@ -15,6 +15,8 @@ class OrderDetailView(TemplateView):
     template_name='order_detail_view.html'
 
     def get(self, request):
+        print("*******HELLO? ORDER VIEW*********")
+
         """
         Overwriting the OrderDetailView's "get" method to bind line_item 
         data to the returned response
@@ -35,7 +37,7 @@ class OrderDetailView(TemplateView):
             for i in self.line_items:
                 self.total +=1
             # self.total = Product.objects.filter()
-            print("@@@@@@@@@@@@@@@@@@@@",self.cart)
+
         except CustomerOrder.DoesNotExist:
                 self.total = 0
 
@@ -48,14 +50,16 @@ class OrderDetailView(TemplateView):
             except PaymentType.DoesNotExist:
                 pass
             self.payment_options = list(self.payment_options)
-            self.payment_options.append({'id': 'new', 'card_type': 'create new payment type'})
-
             self.active_order = CustomerOrder.objects.get(customer=customer, active_order=1)
-            self.line_items = self.active_order.line_items.all()
+            
+            self.line_items = LineItem.objects.filter(order=self.active_order)
+
 
             # sums together the order total
             for item in self.line_items:
-                self.order_total += item.price
+                print("***** LINE ITEM BY ACTIVE ORDER*****", item)
+                self.order_total += item.product.price
+
 
         except TypeError:
             # Catch for requests coming from the tests module
@@ -79,7 +83,7 @@ class OrderDetailView(TemplateView):
                 'order_total': self.order_total,
                 'payment_options': self.payment_options,
                 'customer_order_id': self.active_order.id,
-                'total': self.total
+                'total': self.total,
             }
         )
 
@@ -112,8 +116,5 @@ def close_order(request):
     order.save()
 
     return HttpResponseRedirect(redirect_to='/order_success')
-
-
-
 
 

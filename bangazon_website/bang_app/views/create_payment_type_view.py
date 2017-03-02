@@ -19,7 +19,7 @@ class CreatePaymentTypeView(TemplateView):
             self.total = 0
             for i in self.line_items:
                 self.total +=1
-            print("@@@@@@@@@@@@@@@@@@@@",self.cart)
+            
         except CustomerOrder.DoesNotExist:
                 self.total = 0
         return render(request, self.template_name, {'total': self.total})

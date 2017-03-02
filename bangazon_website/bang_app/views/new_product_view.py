@@ -29,7 +29,8 @@ class NewProductView(TemplateView):
 			self.total = 0
 			for i in self.line_items:
 				self.total +=1
-			print("@@@@@@@@@@@@@@@@@@@@",self.cart)
+			
+			
 		except CustomerOrder.DoesNotExist:
 			self.total = 0
 		return render(request, 'new_product.html', {'category_list': self.category_list,

@@ -19,10 +19,9 @@
         <select name="product_quantity">
             {# temporarily allowing customers to only select 1 through 4 #}
             {# must later reconfigure options to correlate with product listing quantity #}
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
+            {% for x in product_quantity %}
+                <option value="{{ x }}">{{ x }}</option>
+            {% endfor %}
         </select>
 		<button type="submit" class="btn-danger">Add To Order</button>
 	</form>

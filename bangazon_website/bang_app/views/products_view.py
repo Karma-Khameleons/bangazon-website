@@ -33,12 +33,9 @@ class ProductsView(TemplateView):
 		try:
 			self.cart = CustomerOrder.objects.get(customer=request.user.customer, active_order=1)
 			self.line_items = self.cart.line_items.all()
-			# self.line_items = list(self.cart.line_items)
 			self.total = 0
 			for i in self.line_items:
 				self.total +=1
-			# self.total = Product.objects.filter()
-			print("@@@@@@@@@@@@@@@@@@@@",self.cart)
 		except CustomerOrder.DoesNotExist:
 				self.total = 0
 		except AttributeError:		
@@ -49,10 +46,11 @@ class ProductsView(TemplateView):
 def create_product(request):
 
 	data = request.POST
+	label = data['label']
 
-	if 'label' in data:
+	if label != '':
 
-		product_category = ProductType.objects.create(label=data['label'])
+		product_category = ProductType.objects.create(label)
 
 		Product.objects.create(
 			name=data['product_name'],
@@ -73,7 +71,7 @@ def create_product(request):
 			description=data['description'],
 			price=data['price'],
 			quantity=data['quantity'],
-			product_type=ProductType.objects.get(pk=data['pk']),
+			product_type=ProductType.objects.get(pk=data['category_list']),
 			seller=Customer.objects.get(user=request.user)
 		)
 

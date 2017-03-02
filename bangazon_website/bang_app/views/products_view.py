@@ -28,8 +28,9 @@ class ProductsView(TemplateView):
 	template_name = 'categories.html'
 
 	def get(self, request):
-		self.category_list = ProductType.objects.all()
-
+		self.category_list = ProductType.objects.order_by('id')
+		for c in self.category_list:
+			c.products = Product.objects.filter(product_type_id=c.id)[:10]
 		try:
 			self.cart = CustomerOrder.objects.get(customer=request.user.customer, active_order=1)
 			self.line_items = self.cart.line_items.all()
@@ -38,7 +39,6 @@ class ProductsView(TemplateView):
 			for i in self.line_items:
 				self.total +=1
 			# self.total = Product.objects.filter()
-			print("@@@@@@@@@@@@@@@@@@@@",self.cart)
 		except CustomerOrder.DoesNotExist:
 				self.total = 0
 		return render(request, self.template_name, {'category_list': self.category_list,

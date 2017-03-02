@@ -1,5 +1,5 @@
 from django.test import TestCase
-from bang_app.models import PaymentType, Customer, CustomerOrder, Product
+from bang_app.models import PaymentType, Customer, CustomerOrder, Product, LineItem
 from bang_app.views import OrderDetailView
 from django.urls import reverse
 from django.contrib.auth.models import User
@@ -53,7 +53,7 @@ class TestOrderDetailView(TestCase):
         self.ball = Product(None, "ball", 1.99, "It's round", 3, 1, 1)
         self.ball.save()
         self.testing_product = Product.objects.get(pk=1)
-        self.new_customer_order.line_items.add(self.testing_product)
+        new_line_item = LineItem.objects.create(order=self.new_customer_order, product=self.ball, quantity=1)
 
     def test_order_detail_template_is_rendered_properly(self):
         try:

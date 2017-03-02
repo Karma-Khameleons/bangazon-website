@@ -1,5 +1,5 @@
 from django.test import TestCase 
-from bang_app.models import CustomerOrder, Customer, PaymentType, Product
+from bang_app.models import CustomerOrder, Customer, PaymentType, Product, LineItem
 from django.contrib.auth.models import User
 
 class TestCustomerOrderCreation(TestCase):
@@ -50,7 +50,8 @@ class TestCustomerOrderCreation(TestCase):
 
         self.testing_product = Product.objects.get(pk=1)
 
-        self.new_customer_order.line_items.add(self.testing_product)
+        new_line_item = LineItem.objects.create(order=self.new_customer_order, product=self.testing_product, quantity=1)
+        new_line_item.save()
 
 
     def test_new_order_is_of_class_CustomerOrder(self):

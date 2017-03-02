@@ -11,7 +11,7 @@ from bang_app.models import Customer
 from bang_app.models import PaymentType
 from bang_app.models import ProductType
 from bang_app.models import Product
-from bang_app.models import CustomerOrder
+from bang_app.models import CustomerOrder, LineItem
 
 
 
@@ -82,8 +82,7 @@ class TestLineItem(TestCase):
 	
 		self.order.save()
 
-		# Add a line item to the order
-		self.order.line_items.add(self.scissors)
+		new_line_item = LineItem.objects.create(order=self.order, product=self.scissors, quantity=1)
 
 		# Log in the setup customer
 		self.client.login(username="suzybishop", password="password1234")

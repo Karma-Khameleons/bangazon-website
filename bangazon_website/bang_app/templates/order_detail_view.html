@@ -30,7 +30,7 @@
 	
 			<div class="row">
 				<div class="col-md-4"><strong>{{ line.product.name }}</strong>
-                    <br>{{ line.description }}</div>
+                    <br>{{ line.product.description }}</div>
                 <div class="col-md-4">{{ line.quantity }}</div>
 				<div class="col-md-4">$ {{ line.quantity|multiply:line.product.price }} </div>
 			</div>

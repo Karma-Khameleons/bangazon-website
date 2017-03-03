@@ -45,7 +45,7 @@
 		{% if payment_options %}
 		<h3>Select a payment type:</h3>
 
-		<select>
+		<select name="payment_type_id">
 			{% for option in payment_options %}
 			
 				<option value="{{ option.id }}">{{ option.card_type }}</option>
@@ -55,13 +55,13 @@
 
 		<p><a href="{% url 'bang_app:create_payment_type_view' %}">Create a new payment type</a></p>
 
-		<button type="button" class="btn btn-primary">Complete Checkout</button>
+		<button type="submit" class="btn btn-primary">Complete Checkout</button>
 
 
 		{# No payment types #}
 		{% else %}
 		<p class="text-danger">You have no available payment options.</p>
-		<p><a href="{% url 'bang_app:create_payment_type_view' %}">Create a new payment type</a></p>
+		<p><a href="{% url 'bang_app:create_payment_type_view'  %}">Create a new payment type</a></p>
 		{% endif %}
 
 	</form>

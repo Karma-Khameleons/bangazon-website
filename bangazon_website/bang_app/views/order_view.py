@@ -18,7 +18,7 @@ class OrderDetailView(TemplateView):
 		print("*******HELLO? ORDER VIEW*********")
 
 		"""
-		Overwriting the OrderDetailView's "get" method to bind line_item 
+		Overwriting the OrderDetailView's "get" method to bind line_item
 		data to the returned response
 
 		Author: Sam Phillips, Abby Fleming
@@ -41,15 +41,15 @@ class OrderDetailView(TemplateView):
 		except CustomerOrder.DoesNotExist:
 				self.total = 0
 
-		
+
 		# collects all line_items and payment type options for the current user's active order
 		try:
 			# processes requests coming from the User Interface
 			customer = Customer.objects.get(user=request.user)
-			
+
 			try:
 				self.payment_options = PaymentType.objects.filter(customer_id=customer.id)
-			
+
 			except PaymentType.DoesNotExist:
 				pass
 			self.payment_options = list(self.payment_options)
@@ -94,10 +94,10 @@ def close_order(request):
 
 	Author: Sam Phillips
 	"""
-	data = request.POST 
+	data = request.POST
 	order = CustomerOrder.objects.get(id=data['customer_order_id'])
 
-	# checks to see if the user is trying to create a new payment type for this order. If so, it creates that payment type and assigns it to the order. 
+	# checks to see if the user is trying to create a new payment type for this order. If so, it creates that payment type and assigns it to the order.
 	# Otherwise it assigns the pk of the selected payment type.
 	if data['payment_type_id'] == 'new':
 		new_payment_type = PaymentType.objects.create(
@@ -117,5 +117,27 @@ def close_order(request):
 	order.save()
 
 	return HttpResponseRedirect(redirect_to='/order_success')
+
+
+
+def product_quantity_update(self, request):
+    """
+    Purpose: Processes user requests to complete an order
+
+    Author: @whitneycormack
+    """
+    data = request.POST
+    current_order = CustomerOrder.objects.get(id=data['customer_order_id'])
+
+
+for each line item (Lineitem.objects.filter(order = current order)
+find product on line item
+deduct line item quantity from product quantity
+
+line_item = line_items.objects.filter(order=current_order)
+
+
+
+
 
 

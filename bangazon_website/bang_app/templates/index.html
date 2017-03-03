@@ -50,19 +50,10 @@
 			<li><a href="{% url 'bang_app:register' %}">Register</a></li>
 	 </ul>
 
-
-
 	{% endif %}
 	</div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-
-
-
-
-
-
-
 
 {% block content %}
 	<div class="col-md-8 col-md-offset-4">
@@ -70,7 +61,7 @@
 		{% for c in categories %}
 			<h3>{{c.label}}</h3>
 			{% for p in c.products %}
-				<h4><a href="{#}">{{p.name}}</a></h4>
+				<h4><a href="{% url 'bang_app:product_detail' id=p.id %}">{{p.name}} ${{ p.price }}</a></h4>
 			{%endfor%}
 		{%endfor%}
 	</div>

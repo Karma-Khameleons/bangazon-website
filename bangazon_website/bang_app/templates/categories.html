@@ -1,12 +1,12 @@
 {% extends 'index.html' %}
 
 {% block content %}
-<div class="col-md-6 col-md-offset-4">
+<div class="col-md-8 col-md-offset-4">
 	<h1>Products by Category</h1>
 </div>
 <div class="row">
 	{% for category in category_list %}
-	<div class="col-md-10 col-md-offset-2">
+	<div class="col-md-8 col-md-offset-4">
 		<h3><a href="{% url 'bang_app:product_list' id=category.id %}">{{ category.label }}
 		({{category.quantity}})</a></h3>
 		{% for p in category.products %}

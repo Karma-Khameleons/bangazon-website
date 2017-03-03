@@ -32,7 +32,6 @@ class ProductsView(TemplateView):
 		for c in self.category_list:
 			c.products = Product.objects.filter(product_type_id=c.id)[:10]
 			c.quantity = c.products.count()
-			print(c.quantity)
 		try:
 			self.cart = CustomerOrder.objects.get(customer=request.user.customer, active_order=1)
 			self.line_items = self.cart.line_items.all()
@@ -42,7 +41,7 @@ class ProductsView(TemplateView):
 			# self.total = Product.objects.filter()
 		except CustomerOrder.DoesNotExist:
 				self.total = 0
-		except AttributeError:		
+		except AttributeError:
 			self.total = 0
 		return render(request, self.template_name, {'category_list': self.category_list,
 													'total': self.total})

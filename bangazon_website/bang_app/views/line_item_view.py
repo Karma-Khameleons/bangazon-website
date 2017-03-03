@@ -18,13 +18,12 @@ class LineItemView(TemplateView):
 
         # Get the current customer determined by the logged in user (request.user)
         self.current_customer = Customer.objects.get(user=request.user.pk)
-        
+
         # Get the current order based on the customer logged in
         self.current_order = CustomerOrder.objects.get(customer=self.current_customer.pk)
 
         # Get all of the line items for the current customer
         all_line_items = self.current_order.line_items.all()
-        print("******** ALL THE LINE ITEMS*********", all_line_items)
 
         self.category_list = ProductType.objects.all()
 
@@ -32,15 +31,15 @@ class LineItemView(TemplateView):
             self.cart = CustomerOrder.objects.get(customer=request.user.customer, active_order=1)
             self.line_items = self.cart.line_items.all()
             self.total = 0
-            
+
             for i in self.line_items:
                 self.total +=1
-            
+
         except CustomerOrder.DoesNotExist:
                 self.total = 0
-            
+
         # Return a request, page, and a dictionary with line items and current order
-        return render(request, 'success.html', {'line_items': all_line_items, 
+        return render(request, 'success.html', {'line_items': all_line_items,
                                                 'current_order': self.current_order,
                                                 'total': self.total})
 
@@ -66,12 +65,12 @@ class LineItemView(TemplateView):
         # Add the product
         # processes quantity via the custom 'through' table
         # checks to see if the product already exists as a line item
-        # on the user's current order. 
-        # If it does, the already existing LineItem's quantity value 
+        # on the user's current order.
+        # If it does, the already existing LineItem's quantity value
         # is increased by the POST quantity.
         try:
             old_line_item = LineItem.objects.get(
-                order=current_order, 
+                order=current_order,
                 product=product
             )
             old_line_item.quantity += int(data['product_quantity'])
@@ -80,14 +79,14 @@ class LineItemView(TemplateView):
         # If it doesn't exist, a new LineItem is created
         except LineItem.DoesNotExist:
             new_line_item = LineItem(
-                order=current_order, 
-                product=product, 
+                order=current_order,
+                product=product,
                 quantity=data['product_quantity']
             )
             new_line_item.save()
-        
 
-        return HttpResponseRedirect("/success")
+
+        return HttpResponseRedirect("/order")
 
 
 

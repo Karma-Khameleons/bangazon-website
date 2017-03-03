@@ -19,12 +19,12 @@ class ProductListView(TemplateView):
       @whitneycormack
   '''
   pass
-  
+
 template_name = "product_list.html"
 
 
 def get_product_category_list(request, id):
-  product_category_list = Product.objects.filter(product_type_id=id) 
+  product_category_list = Product.objects.filter(product_type_id=id)
   try:
     cart = CustomerOrder.objects.get(customer=request.user.customer, active_order=1)
     line_items = cart.line_items.all()
@@ -32,10 +32,9 @@ def get_product_category_list(request, id):
     for i in line_items:
       total += 1
   except CustomerOrder.DoesNotExist:
-    print("adfsaddas")
     total = 0
-  except AttributeError:        
+  except AttributeError:
     total = 0
-  return render(request, 'product_list.html', {'product_category_list': product_category_list, 
+  return render(request, 'product_list.html', {'product_category_list': product_category_list,
                                                 'total': total})
 

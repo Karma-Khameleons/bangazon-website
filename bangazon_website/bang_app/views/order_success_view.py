@@ -18,7 +18,7 @@ class OrderSuccess(TemplateView):
 			self.total = 0
 			for i in self.line_items:
 				self.total +=1
-			
+
 		except CustomerOrder.DoesNotExist:
 			self.total = 0
 		return render(request, self.template_name, {'total': self.total})

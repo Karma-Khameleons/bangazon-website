@@ -31,13 +31,13 @@ def get_product_detail(request, id):
     try:
         cart = CustomerOrder.objects.get(customer=request.user.customer, active_order=1)
         line_items = cart.line_items.all()
-        print("@@@@@@@@@@@@@", line_items)
         total = 0
+        
         for i in line_items:
           total += 1
-        print("@@@@@@@@@@@@@@@@@@@@",cart)
+    
+   
     except CustomerOrder.DoesNotExist:
-        print("adfsaddas")
         total = 0
     except AttributeError:        
         total = 0

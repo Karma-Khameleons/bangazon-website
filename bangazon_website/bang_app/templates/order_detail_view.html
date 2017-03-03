@@ -1,57 +1,78 @@
 {% extends 'index.html' %}
+{% load bang_app_extras %}
 {%block navbar%}
 {% endblock %}
+
 
 {% block content %}
 <div class="col-md-8 col-md-offset-3">
 
-{# checks to see if the user has a currently active order. If they do, the order detail/checkout page is rendered with all appropriate affordances#}
-    {% if line_items %}
+	{# checks to see if the user has a currently active order. If they do, the order detail/checkout page is rendered with all appropriate affordances#}
+	{% if line_items %}
 
-    {# beginning of checkout form #}
-    <form action="{%url 'bang_app:close_order' %}" method="post">
-        {% csrf_token %}
-        <input class="hidden" type="text" name="customer_order_id" value="{{customer_order_id}}">
+	{# beginning of checkout form #}
+	<form action="{%url 'bang_app:close_order' %}" method="post">
+	
+		{# hidden fields #}
+		{% csrf_token %}
+		<input class="hidden" type="text" name="customer_order_id" value="{{customer_order_id}}">
 
-        <div id="line_items_summary">
-            <h3>Items in Your Current Order:</h3>
-            <div>
-                {% for product in line_items %}
-                <h5><span>{{product.name}}</span>: $<span>{{product.price}}</span></h5>
-                {% endfor %}
-            </div>
-            <h5>Order Total: {{order_total}}</h5>
-        </div>
+		{# Order Details #}
+		<h1>Your Orders</h1>
 
-        <div id="payment_options">
-            {% if payment_options %}
-                <h3>Select a payment type:</h3>
+		<div class="row">
+				<div class="col-md-4"><strong>Name</strong></div>
+				<div class="col-md-4"><strong>Quantity</strong></div>
+				<div class="col-md-4"><strong>Price</strong></div>
+			</div>
 
-                {% for option in payment_options %}
-                    <input type="radio" name="payment_type_id" class="payment_type_option" value="{{option.id}}" checked>{{option.card_type}}<br>
-                {% endfor %}
-                
-            {% else %}
-                <h4>You have no available payment options. Click <a href="{% url 'bang_app:create_payment_type_view' %}
-                ">here</a> to create a new one</h4>
-            {% endif %}
-        </div>
+		{% for line in line_items %}
+	
+			<div class="row">
+				<div class="col-md-4"><strong>{{ line.product.name }}</strong>
+                    <br>{{ line.product.description }}</div>
+                <div class="col-md-4">{{ line.quantity }}</div>
+				<div class="col-md-4">$ {{ line.quantity|multiply:line.product.price }} </div>
+			</div>
 
-        <div id="order_view_payment_form">
-            <input type="text" class="form-control" name="card_type" value="" placeholder="Enter Card Type (i.e. Visa)">
-            <input type="text" class="form-control" name="card_number" value="" placeholder="Enter Credit Card Number">
-            <input type="text" class="form-control" name="cvv" value="" placeholder="Enter 3-digit Security Code">
-            <input type="text" class="form-control" name="expiration_date" value="" placeholder="Enter Expiration Date">
-            <input type="text" class="form-control" name="billing_name" value="" placeholder="Enter Name on Card">
-        </div>
+		{% endfor %}
 
-        <button type="submit">Complete Checkout</button>
-    </form>
+
+		<h3>Order Total: $ {{order_total}}</h3>
+		<hr>
+
+		{# Payment Options #}
+		{% if payment_options %}
+		<h3>Select a payment type:</h3>
+
+		<select name="payment_type_id">
+			{% for option in payment_options %}
+			
+				<option value="{{ option.id }}">{{ option.card_type }}</option>
+			
+			{% endfor %}
+		</select>
+
+		<p><a href="{% url 'bang_app:create_payment_type_view' %}">Create a new payment type</a></p>
+
+		<button type="submit" class="btn btn-primary">Complete Checkout</button>
+
+
+		{# No payment types #}
+		{% else %}
+		<p class="text-danger">You have no available payment options.</p>
+		<p><a href="{% url 'bang_app:create_payment_type_view'  %}">Create a new payment type</a></p>
+		{% endif %}
+
+	</form>
+</div>
 
 {# if the user does not have an active order, they are provided a link to the home page #}
-    {% else %}
-        <h3>You have no items in your current order</h3>
-        <p>Click <a href="{% url 'bang_app:categories' %}">here</a> to shop for products</p>
-    {% endif %}
+	{% else %}
+	<h3>You have no items in your current order</h3>
+	<a href="{% url 'bang_app:categories' %}">Shop for Products</a>
+	{% endif %}
+
 </div>
 {% endblock %}
+

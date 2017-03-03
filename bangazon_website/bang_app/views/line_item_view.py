@@ -24,6 +24,7 @@ class LineItemView(TemplateView):
 
         # Get all of the line items for the current customer
         all_line_items = self.current_order.line_items.all()
+        print("******** ALL THE LINE ITEMS*********", all_line_items)
 
         self.category_list = ProductType.objects.all()
 
@@ -31,9 +32,10 @@ class LineItemView(TemplateView):
             self.cart = CustomerOrder.objects.get(customer=request.user.customer, active_order=1)
             self.line_items = self.cart.line_items.all()
             self.total = 0
+            
             for i in self.line_items:
                 self.total +=1
-            print("@@@@@@@@@@@@@@@@@@@@",self.cart)
+            
         except CustomerOrder.DoesNotExist:
                 self.total = 0
             

@@ -130,11 +130,11 @@ def product_quantity_update(self, request):
     current_order = CustomerOrder.objects.get(id=data['customer_order_id'])
 
 
-for each line item (Lineitem.objects.filter(order = current order)
-find product on line item
-deduct line item quantity from product quantity
+    # for each line item (Lineitem.objects.filter(order = current order)
+    # find product on line item
+    # deduct line item quantity from product quantity
 
-line_item = line_items.objects.filter(order=current_order)
+    line_items = line_items.objects.filter(order=current_order)
 
 
 

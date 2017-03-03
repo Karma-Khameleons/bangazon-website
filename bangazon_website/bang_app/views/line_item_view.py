@@ -15,8 +15,6 @@ class LineItemView(TemplateView):
     """
 
     def get(self, request):
-        print("*******HELLOOOOOOOOOOOO??????**********")
-
 
         # Get the current customer determined by the logged in user (request.user)
         self.current_customer = Customer.objects.get(user=request.user.pk)

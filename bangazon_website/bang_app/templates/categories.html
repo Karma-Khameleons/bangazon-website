@@ -8,7 +8,8 @@
 	{% for category in category_list %}
 	<div class="col-md-10 col-md-offset-2">
 		<h3><a href="{% url 'bang_app:product_list' id=category.id %}">{{ category.label }}
-		{% for p in category.products %}({{p.quantity}})</a></h3>
+		({{category.quantity}})</a></h3>
+		{% for p in category.products %}
 			<h4><a href="{% url 'bang_app:product_detail' id=p.id %}">{{p.name}}</a></h4>
 		{% endfor %}
 	</div>

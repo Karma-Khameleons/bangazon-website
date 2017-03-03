@@ -86,7 +86,7 @@ class LineItemView(TemplateView):
             new_line_item.save()
 
 
-        return HttpResponseRedirect("/success")
+        return HttpResponseRedirect("/order")
 
 
 

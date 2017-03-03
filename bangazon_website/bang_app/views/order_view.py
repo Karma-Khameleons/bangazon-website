@@ -7,39 +7,35 @@ from django.http import HttpResponse, HttpResponseRedirect
 from bang_app.models import PaymentType, Customer, Product, CustomerOrder, LineItem
 
 class OrderDetailView(TemplateView):
-	"""
-	Purpose: Class responsible for returning HTTP content when a user requests the Order Detail view
+  '''
+  Purpose: Class responsible for returning HTTP content when a user requests the Order Detail view
 
-	Author: Sam Phillips
-	"""
-	template_name='order_detail_view.html'
+  Author: Sam Phillips
+  '''
+  template_name='order_detail_view.html'
 
-	def get(self, request):
-		print("*******HELLO? ORDER VIEW*********")
+  def get(self, request):
+    """
+    Overwriting the OrderDetailView's "get" method to bind line_item
+    data to the returned response
 
-		"""
-		Overwriting the OrderDetailView's "get" method to bind line_item
-		data to the returned response
+    Author: Sam Phillips, Abby Fleming
+    """
+    # declaring variables which will be used for template data-binding
+    self.line_items = []
+    self.order_total = 0
+    self.line_total = 0
+    self.payment_options = []
+    self.active_order = None
+    try:
+	    self.cart = CustomerOrder.objects.get(customer=request.user.customer, active_order=1)
+	    self.line_items = self.cart.line_items.all()
+	    self.total = 0
+        for i in self.line_items:
+            self.total += 1
 
-		Author: Sam Phillips, Abby Fleming
-		"""
-		# declaring variables which will be used for template data-binding
-		self.line_items = []
-		self.order_total = 0
-		self.line_total = 0
-		self.payment_options = []
-		self.active_order = None
-
-
-		try:
-			self.cart = CustomerOrder.objects.get(customer=request.user.customer, active_order=1)
-			self.line_items = self.cart.line_items.all()
+	except CustomerOrder.DoesNotExist:
 			self.total = 0
-			for i in self.line_items:
-				self.total +=1
-
-		except CustomerOrder.DoesNotExist:
-				self.total = 0
 
 
 		# collects all line_items and payment type options for the current user's active order
@@ -111,33 +107,9 @@ def close_order(request):
 		new_payment_type.save()
 		order.payment_type = new_payment_type
 	else:
-		order.payment_type=PaymentType.objects.get(id=data['payment_type_id'])
-	# closes the order and updates it in the database
-	order.active_order=0
-	order.save()
+        order.payment_type=PaymentType.objects.get(id=data['payment_type_id'])
 
-	return HttpResponseRedirect(redirect_to='/order_success')
+    order.active_order=0
+    order.save()
 
-
-
-def product_quantity_update(self, request):
-    """
-    Purpose: Processes user requests to complete an order
-
-    Author: @whitneycormack
-    """
-    data = request.POST
-    current_order = CustomerOrder.objects.get(id=data['customer_order_id'])
-
-
-    # for each line item (Lineitem.objects.filter(order = current order)
-    # find product on line item
-    # deduct line item quantity from product quantity
-
-    line_items = line_items.objects.filter(order=current_order)
-
-
-
-
-
-
+ #    return HttpResponseRedirect(redirect_to='/order_success')

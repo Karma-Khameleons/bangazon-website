@@ -115,7 +115,7 @@ def close_order(request):
     order.active_order=0
     order.save()
     line_items = LineItem.objects.filter(order=order)
-
+    # updates item quantity to reflect items purchased
     for item in line_items:
         product = item.product
         product.quantity -= item.quantity

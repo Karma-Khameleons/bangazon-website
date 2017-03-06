@@ -74,13 +74,17 @@ WSGI_APPLICATION = 'bangazon_website.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
+bang_db = os.environ.get('BANGAZON_DB')
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'BANGAZON_DB'),
     }
 }
 
+
+# DJANGO_SETTINGS_MODULES='project.settings' django-admin.py
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators

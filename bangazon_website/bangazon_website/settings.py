@@ -75,7 +75,6 @@ WSGI_APPLICATION = 'bangazon_website.wsgi.application'
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 bang_db = os.environ.get('BANGAZON_DB')
-print("*****bang_db*****", bang_db)
 
 DATABASES = {
     'default': {
